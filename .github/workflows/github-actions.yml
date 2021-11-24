@@ -10,6 +10,7 @@ jobs:
   install-packages:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: sudo apt install -y autotools-dev gcc make
       - run: gcc --version  
 
