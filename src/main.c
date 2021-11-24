@@ -30,5 +30,5 @@ main (void)
 
   print_license ();
 
-  return 0;
+  return 0
 }
