@@ -1,0 +1,17 @@
+# Compile project whit GNU Autotools
+
+name: Compile
+
+on: 
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  install-packages:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - run: sudo apt-get install -y gcc autotools-dev gcc make  
+
