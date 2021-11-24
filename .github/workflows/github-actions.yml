@@ -1,4 +1,4 @@
-name: Compile
+name: Build
 
 on: 
   push:
@@ -7,18 +7,12 @@ on:
       - development
 
 jobs:
-
-  install-packages:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install -y autotools-dev gcc make
-
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2  
-        - run: autoreconf --install
-        - run: ./configure
-        - run: make  
+      - run: autoreconf --install
+      - run: ./configure
+      - run: make  
 
