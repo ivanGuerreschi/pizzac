@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install -y autotools-dev gcc make
-      - run: gcc --version  
+      - run: sudo apt-get install -y autotools-dev gcc make
+      - run: autoreconf --install
+      - run: ./configure
+      - run: make  
 
