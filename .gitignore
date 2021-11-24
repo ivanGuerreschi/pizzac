@@ -49,6 +49,8 @@ m4/lt~obsolete.m4
 # (which is called by configure script))
 Makefile
 
-src/.deps/main.Po
+src/.deps/*
 src/main.o
+src/menu.o
 src/pizzac
+src/menu.h

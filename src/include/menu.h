@@ -1,4 +1,4 @@
-/* main.c
+/* menu.h
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,16 +19,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <stdio.h>
-#include <config.h>
-#include "include/menu.h"
+#ifndef MENU_H
+#define MENU_H
 
-int
-main (void)
-{
-  puts (PACKAGE_STRING ".\n");
+void print_license (void);
 
-  print_license ();
-
-  return 0;
-}
+#endif /* MENU_H */

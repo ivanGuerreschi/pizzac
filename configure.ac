@@ -21,7 +21,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([pizzac], [1.0], [ivanguerreschi86@gmail.com])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([foreign])
 
 AC_CONFIG_HEADERS([config.h])
 
