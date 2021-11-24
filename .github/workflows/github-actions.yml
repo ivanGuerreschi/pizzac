@@ -9,7 +9,7 @@ on:
 jobs:
   install-packages:
     runs-on: ubuntu-latest
-      steps:
-        - run: sudo apt install -y autotools-dev gcc make
-        - run: gcc --version  
+    steps:
+      - run: sudo apt install -y autotools-dev gcc make
+      - run: gcc --version  
 
