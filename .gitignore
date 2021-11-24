@@ -15,6 +15,7 @@ autom4te.cache
 /aclocal.m4
 /compile
 /config.guess
+/config.h
 /config.h.in
 /config.log
 /config.status
@@ -47,3 +48,7 @@ m4/lt~obsolete.m4
 # can automatically generate from config.status script
 # (which is called by configure script))
 Makefile
+
+src/.deps/main.Po
+src/main.o
+src/pizzac
