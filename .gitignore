@@ -54,3 +54,8 @@ src/main.o
 src/menu.o
 src/pizzac
 src/menu.h
+
+.dir-locals.el
+GPATH
+GRTAGS
+GTAGS
