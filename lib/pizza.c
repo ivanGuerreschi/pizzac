@@ -19,4 +19,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "pizza.h"
+
+void
+open_file (FILE **file, const char *name_file)
+{
+  if ((*file = fopen (name_file, "r")) == NULL)
+    {
+      perror ("Error open file");
+      exit (1);
+    }
+}
+
+void
+close_file (FILE **file)
+{
+  if (fclose (*file) != 0)
+    perror ("Error close file");
+}

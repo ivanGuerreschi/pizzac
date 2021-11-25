@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-AM_CFLAGS = -I $(top_srcdir)/src -I $(top_srcdir)../lib \
+AM_CFLAGS = -I $(top_srcdir)/src -I $(top_srcdir)/lib \
           -Wall -Wextra -Wpedantic \
           -Wformat=2 -Wno-unused-parameter -Wshadow \
           -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \

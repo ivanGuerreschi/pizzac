@@ -30,7 +30,14 @@ AC_PROG_CC
 AC_PROG_CC_C99
 AC_PROG_RANLIB
 
+# Checks for header files.                                                  
+AC_CHECK_HEADERS([stdlib.h string.h])
+
+# Checks for library functions.                                             
+AC_FUNC_MALLOC
+
+
 AC_CONFIG_FILES([Makefile	
- 		 src/Makefile
- 		 lib/Makefile])
+ 		 lib/Makefile
+ 		 src/Makefile])
 AC_OUTPUT

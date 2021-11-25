@@ -22,4 +22,14 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef LIBPIZZA_H
 #define LIBPIZZA_H
 
+typedef struct
+{
+  char *flour_type;
+  double grams_flour;
+} pizza_t;
+
+void open_file (FILE **, const char *name_file);
+void close_file (FILE **);
+pizza_t *all_pizzas (FILE *, int);
+
 #endif /* LIBPIZZA_H */
