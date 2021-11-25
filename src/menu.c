@@ -20,6 +20,7 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <stdio.h>
+#include <config.h>
 
 void
 print_license (void)
@@ -36,4 +37,10 @@ print_license (void)
 
         "You should have received a copy of the GNU General Public License\n"
         "along with this program.  If not, see <https://www.gnu.org/licenses/>.\n");
+}
+
+void
+print_version (void)
+{
+  puts (PACKAGE_STRING ".\n");
 }

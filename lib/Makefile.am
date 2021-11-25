@@ -1,4 +1,4 @@
-# configure.ac
+# Makefile.am
 # Copyright (C) 2021 Ivan Guerreschi
 #
 # This file is part of pizzac.
@@ -19,21 +19,16 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-AC_PREREQ([2.69])
-AC_INIT([pizzac], [1.0], [ivanguerreschi86@gmail.com])
-AM_INIT_AUTOMAKE([foreign])
+AM_CFLAGS = -I $(top_srcdir)/lib \
+          -Wall -Wextra -Wpedantic \
+          -Wformat=2 -Wno-unused-parameter -Wshadow \
+          -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
+          -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
+	  -Wjump-misses-init -Wlogical-op 	
 
-AC_CONFIG_HEADERS([config.h])
+noinst_LIBRARIES = libpizza.a
+noinst_HEADERS = pizza.h
 
-# Checks for programs.
-AC_PROG_CC
-AC_PROG_CC_C99
-AC_PROG_RANLIB
-
-AC_CONFIG_FILES([
- Makefile
- src/Makefile
- lib/Makefile
-])
-
-AC_OUTPUT
+libpizza_a_SOURCES = \
+		     $(libpiza_a_HEADERS) \
+		     pizza.c

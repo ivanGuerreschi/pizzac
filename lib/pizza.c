@@ -1,4 +1,4 @@
-/* main.c
+/* pizza.c
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,14 +19,4 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <stdio.h>
-#include "include/menu.h"
-
-int
-main (void)
-{
-  print_version ();
-  print_license ();
-
-  return 0;
-}
+#include "pizza.h"
