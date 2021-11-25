@@ -30,5 +30,5 @@ noinst_LIBRARIES = libpizza.a
 noinst_HEADERS = pizza.h
 
 libpizza_a_SOURCES = \
-		     $(libpiza_a_HEADERS) \
+		     $(libpizza_a_HEADERS) \
 		     pizza.c

@@ -19,5 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-SUBDIRS = src lib
+SUBDIRS = \
+	  lib \
+	  src/
+
 dist_doc_DATA = README.md

@@ -30,10 +30,7 @@ AC_PROG_CC
 AC_PROG_CC_C99
 AC_PROG_RANLIB
 
-AC_CONFIG_FILES([
- Makefile
- src/Makefile
- lib/Makefile
-])
-
+AC_CONFIG_FILES([Makefile	
+ 		 src/Makefile
+ 		 lib/Makefile])
 AC_OUTPUT
