@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get install -y autotools-dev gcc make
+      - run: sudo apt-get install -y autotools-dev gcc make guile-3.0-dev
       - run: autoreconf --install
       - run: ./configure
       - run: make
