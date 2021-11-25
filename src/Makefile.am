@@ -28,3 +28,5 @@ AM_CFLAGS = -I $(top_srcdir)/src \
 
 bin_PROGRAMS = pizzac
 pizzac_SOURCES = main.c menu.c
+
+pizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS)
