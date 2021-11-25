@@ -20,23 +20,18 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <libguile.h>
-#include "include/menu.h"
 
-SCM
-print_version_wrapper (void)
-{    
-  return scm_from_locale_string (print_version ());
-}
-
-SCM
-print_license_wrapper (void)
-{    
-  return scm_from_locale_string (print_license ());
-}
-
-void
-init_pizza ()
+static void
+inner_main (void *closure, int argc, char **argv)
 {
-  scm_c_define_gsubr ("print_version", 0, 0, 0, print_version_wrapper);
-  scm_c_define_gsubr ("print_license", 0, 0, 0, print_license_wrapper);
+  /* preparation */
+  scm_shell (argc, argv);
+  /* after exit */
+}
+
+int
+main (int argc, char **argv)
+{
+  scm_boot_guile (argc, argv, inner_main, 0);
+  return 0; /* never reached, see inner_main */
 }

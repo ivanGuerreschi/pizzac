@@ -22,7 +22,4 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef MENU_H
 #define MENU_H
 
-char *print_version (void);
-char *print_license (void);
-
 #endif /* MENU_H */

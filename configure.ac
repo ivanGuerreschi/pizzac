@@ -36,8 +36,11 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 # Checks for library functions.                                             
 AC_FUNC_MALLOC
 
+# Check for Guile
+PKG_CHECK_MODULES([GUILE], [guile-3.0])
 
 AC_CONFIG_FILES([Makefile	
  		 lib/Makefile
- 		 src/Makefile])
+ 		 src/Makefile
+		 guile_pizza/Makefile])
 AC_OUTPUT

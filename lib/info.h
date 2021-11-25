@@ -1,4 +1,4 @@
-/* menu.c
+/* info.h
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -18,3 +18,11 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
+
+#ifndef INFO_H
+#define INFO_H
+
+const char *print_version (void);
+const char *print_license (void);
+
+#endif /* INFO_H */

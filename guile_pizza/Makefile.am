@@ -19,16 +19,14 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-AM_CFLAGS = -I $(top_srcdir)/lib \
+AM_CFLAGS = -I $(top_srcdir)/guile_pizza \
           -Wall -Wextra -Wpedantic \
           -Wformat=2 -Wno-unused-parameter -Wshadow \
           -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
           -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
-	  -Wjump-misses-init -Wlogical-op 	
+	  -Wjump-misses-init -Wlogical-op
 
-noinst_LIBRARIES = libpizza.a
-noinst_HEADERS = pizza.h info.h
-
-libpizza_a_SOURCES = \
-		     $(libpizza_a_HEADERS) \
-		     pizza.c info.c
+bin_PROGRAMS = guile_pizza
+guile_pizza_SOURCES = guile_pizza.c
+guile_pizza_CFLAGS = @GUILE_CFLAGS@
+guile_pizza_LDADD = @GUILE_LIBS@

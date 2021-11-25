@@ -22,14 +22,15 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "pizza.h"
 #include "include/menu.h"
+#include "pizza.h"
+#include "info.h"
 
 int
 main (void)
 {
-  printf ("%s\n", print_version ());
-  printf ("%s\n", print_license ());
+  puts (print_version ());
+  puts (print_license ());
 
   FILE *file_pizza = NULL;
   char *file = NULL;
@@ -41,6 +42,8 @@ main (void)
   
   open_file (&file_pizza, file);
   close_file (&file_pizza);
+
+  free (file);
  
   return 0;
 }

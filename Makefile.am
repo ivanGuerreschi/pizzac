@@ -21,6 +21,7 @@
 
 SUBDIRS = \
 	  lib \
-	  src/
+	  src \
+	  guile_pizza 
 
 dist_doc_DATA = README.md

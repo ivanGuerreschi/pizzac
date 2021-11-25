@@ -54,9 +54,13 @@ src/main.o
 src/menu.o
 src/pizzac
 src/menu.h
-lib/.deps/pizza.Po
+lib/.deps/*
 lib/libpizza.a
 lib/pizza.o
+lib/info.o
+guile_pizza/guile_pizza
+guile_pizza/.deps/*
+
 
 .dir-locals.el
 GPATH
