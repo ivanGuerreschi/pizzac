@@ -22,8 +22,9 @@
 AC_PREREQ([2.69])
 AC_INIT([pizzac], [1.0], [ivanguerreschi86@gmail.com])
 AM_INIT_AUTOMAKE([foreign])
-
+AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
+
 
 # Checks for programs.
 AC_PROG_CC
@@ -41,6 +42,6 @@ PKG_CHECK_MODULES([GUILE], [guile-3.0])
 
 AC_CONFIG_FILES([Makefile	
  		 lib/Makefile
- 		 src/Makefile
-		 guile_pizza/Makefile])
+ 		 src/terminal_pizzac/Makefile
+		 src/guile_pizzac/Makefile])
 AC_OUTPUT

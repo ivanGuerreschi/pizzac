@@ -21,7 +21,7 @@
 
 SUBDIRS = \
 	  lib \
-	  src \
-	  guile_pizza 
+	  src/terminal_pizzac \
+	  src/guile_pizzac 
 
 dist_doc_DATA = README.md

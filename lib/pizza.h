@@ -26,10 +26,23 @@ typedef struct
 {
   char *flour_type;
   double grams_flour;
-} pizza_t;
+  char *yeast_type;
+  double grams_yeast;
+  double grams_water;
+  double grams_salt;
+  double grams_sugar;
+  char *other;  
+} ingrediants_t;
+
+typedef struct
+{
+  double cooking_time;
+  double oven_temperature;
+} preparation_t;
+  
+
 
 void open_file (FILE **, const char *name_file);
 void close_file (FILE **);
-pizza_t *all_pizzas (FILE *, int);
 
 #endif /* LIBPIZZA_H */
