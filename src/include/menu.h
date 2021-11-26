@@ -22,4 +22,6 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef MENU_H
 #define MENU_H
 
+int print_menu (void);
+
 #endif /* MENU_H */

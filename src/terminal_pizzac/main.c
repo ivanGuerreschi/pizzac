@@ -22,6 +22,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "../include/menu.h"
 #include "pizza.h"
 #include "info.h"
@@ -32,18 +33,32 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  FILE *file_pizza = NULL;
-  char *file = NULL;
-  const char *file_name = "/.pizza.dat";
+  /* FILE *file_pizza = NULL; */
+  /* char *file = NULL; */
+  /* const char *file_name = "/.pizza.dat"; */
 
-  file = malloc (strlen (getenv ("HOME") + strlen (file_name) + 1));
-  strcpy (file, getenv ("HOME"));
-  strcat (file, file_name);
+  /* file = malloc (strlen (getenv ("HOME") + strlen (file_name) + 1)); */
+  /* strcpy (file, getenv ("HOME")); */
+  /* strcat (file, file_name); */
   
-  open_file (&file_pizza, file);
+  /* open_file (&file_pizza, file); */
 
-  close_file (&file_pizza);
-  free (file);
+  /* close_file (&file_pizza); */
+  /* free (file); */
+
+  int menu = 0;
+   
+  while (true)
+    {
+      menu = print_menu ();
+
+      switch (menu)
+        {
+        case 1:
+          exit (1);
+          break;
+	}
+    }
  
   return 0;
 }

@@ -21,17 +21,27 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <libguile.h>
 
+static SCM hello_world ();
+
 static void
 inner_main (void *closure, int argc, char **argv)
 {
-  /* preparation */
+  scm_c_define_gsubr ("hello_world", 0, 0, 0, hello_world);
+  
   scm_shell (argc, argv);
-  /* after exit */
 }
+
+static SCM
+hello_world (void)
+{
+  SCM result = scm_from_locale_string ("Hello World");
+  return result;
+}
+
 
 int
 main (int argc, char **argv)
 {
   scm_boot_guile (argc, argv, inner_main, 0);
-  return 0; /* never reached, see inner_main */
+  return 0;
 }
