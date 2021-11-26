@@ -49,18 +49,20 @@ m4/lt~obsolete.m4
 # (which is called by configure script))
 Makefile
 
-src/.deps/*
-src/main.o
-src/menu.o
-src/pizzac
-src/menu.h
-lib/.deps/*
+
+src/terminal_pizzac/main.o
+src/terminal_pizzac/menu.o
+src/terminal_pizzac/terminalpizzac
+src/terminal_pizzac/.deps/*
+
 lib/libpizza.a
 lib/pizza.o
 lib/info.o
-guile_pizza/guile_pizza
-guile_pizza/.deps/*
-guile_pizza/guile_pizza-guile_pizza.o
+lib/.deps/*
+
+src/guile_pizzac/guilepizzac
+src/guile_pizzac/guilepizzac-guile_pizza.o
+src/guile_pizzac/.deps/*
 
 
 .dir-locals.el
