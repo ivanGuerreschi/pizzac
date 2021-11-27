@@ -28,5 +28,4 @@ AM_CFLAGS = -I $(top_srcdir)/src/terminal_pizzac/ -I $(top_srcdir)/lib \
 
 bin_PROGRAMS = terminalpizzac
 terminalpizzac_SOURCES = main.c menu.c
-
 terminalpizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS)

@@ -20,28 +20,36 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <libguile.h>
-
-static SCM hello_world ();
+#include "info.h"
+static SCM version ();
+static SCM license ();
 
 static void
 inner_main (void *closure, int argc, char **argv)
 {
-  scm_c_define_gsubr ("hello_world", 0, 0, 0, hello_world);
+  scm_c_define_gsubr ("version", 0, 0, 0, version);
+  scm_c_define_gsubr ("license", 0, 0, 0, license);
   
   scm_shell (argc, argv);
 }
-
-static SCM
-hello_world (void)
-{
-  SCM result = scm_from_locale_string ("Hello World");
-  return result;
-}
-
 
 int
 main (int argc, char **argv)
 {
   scm_boot_guile (argc, argv, inner_main, 0);
   return 0;
+}
+
+static SCM
+version (void)
+{
+  SCM result = scm_from_utf8_string (print_version ());
+  return result;
+}
+
+static SCM
+license (void)
+{
+  SCM result = scm_from_utf8_string (print_license ());
+  return result;
 }

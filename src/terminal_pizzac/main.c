@@ -23,7 +23,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../include/menu.h"
+#include "include/menu.h"
 #include "pizza.h"
 #include "info.h"
 

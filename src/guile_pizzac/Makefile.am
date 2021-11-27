@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ \
+AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ -I $(top_srdir)/lib \
 	  -Wall -Wextra -Wpedantic \
           -Wformat=2 -Wno-unused-parameter -Wshadow \
           -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
@@ -27,6 +27,6 @@ AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ \
 	  -Wjump-misses-init -Wlogical-op
 
 bin_PROGRAMS = guilepizzac
-guilepizzac_SOURCES = guile_pizza.c
-guilepizzac_CFLAGS = @GUILE_CFLAGS@
-guilepizzac_LDADD = @GUILE_LIBS@
+guilepizzac_SOURCES = guile_pizza.c 
+guilepizzac_CFLAGS = @GUILE_CFLAGS@ -I $(top_builddir)/lib 
+guilepizzac_LDADD = @GUILE_LIBS@ $(top_builddir)/lib/libpizza.a
