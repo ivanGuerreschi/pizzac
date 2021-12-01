@@ -31,17 +31,18 @@ print_menu (void)
 
   puts ("----------------------------------------------");
   puts ("terminalpizzac\n");
-  puts ("(1) Input number");
+  puts ("(1, 2) Input number");
   puts ("(1) Quit ");
+  puts ("(2) Print all pizzas");
   puts ("----------------------------------------------");
 
   if (fgets (buffer, sizeof (buffer), stdin) != NULL)
-    {      
+    {
       buffer[strcspn (buffer, "\r\n")] = 0;
       number_input = atoi (buffer);
     }
-  else  
+  else
     return 0;
-    
+
   return number_input;
 }

@@ -24,9 +24,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "pizza.h"
 
 void
-open_file (FILE **file, const char *name_file)
+open_file (FILE **file, const char *file_name)
 {
-  if ((*file = fopen (name_file, "r")) == NULL)
+  if ((*file = fopen (file_name, "a+")) == NULL)
     {
       perror ("Error open file");
       exit (1);
@@ -38,4 +38,87 @@ close_file (FILE **file)
 {
   if (fclose (*file) != 0)
     perror ("Error close file");
+}
+
+int
+count_row_file (FILE *file)
+{
+  char c;
+  int count = 0;
+  for (c = getc (file); c != EOF; c = getc (file))
+    if (c == '\n')
+      count++;
+
+  return count;
+}
+
+pizza_t
+*all_pizzas (FILE *file, int row)
+{
+  pizza_t *pizza = calloc (row + 1, sizeof (pizza_t));
+
+  if (pizza == NULL)
+    {
+      perror ("Error allocation failed");
+      exit (0);
+    }
+
+  for (int i = 0; i < row; i++)
+    {
+      pizza[i].ingrediants.flour_type = malloc (50 * sizeof (char));
+      pizza[i].ingrediants.yeast_type = malloc (50 * sizeof (char));
+    }
+
+  int n = 0;
+  int res = 0;
+
+  while (1)
+    {
+      res = fscanf (file, "%s", pizza[n].ingrediants.flour_type);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_flour);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%s", pizza[n].ingrediants.yeast_type);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_yeast);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_water);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_salt);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_sugar);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_oil);
+      if (res != 1)
+	break;
+
+
+      res = fscanf (file, "%lf", &pizza[n].preparation.cooking_time);
+      if (res != 1)
+	break;
+
+      res = fscanf (file, "%lf", &pizza[n].preparation.oven_temperature);
+      if (res != 1)
+        {
+          perror ("Error read file");
+          exit (1);
+        }
+      n++;
+    } 
+ 
+  return pizza;
 }

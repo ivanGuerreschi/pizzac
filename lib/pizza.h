@@ -22,7 +22,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef LIBPIZZA_H
 #define LIBPIZZA_H
 
-typedef struct
+struct ingrediants_s
 {
   char *flour_type;
   double grams_flour;
@@ -31,18 +31,24 @@ typedef struct
   double grams_water;
   double grams_salt;
   double grams_sugar;
-  char *other;  
-} ingrediants_t;
+  double grams_oil;  
+};
 
-typedef struct
+struct preparation_s
 {
   double cooking_time;
   double oven_temperature;
-} preparation_t;
-  
+};
 
+typedef struct
+{
+  struct ingrediants_s ingrediants;
+  struct preparation_s preparation;
+} pizza_t;
 
 void open_file (FILE **, const char *name_file);
 void close_file (FILE **);
+int count_row_file (FILE *);
+pizza_t *all_pizzas (FILE *, int);
 
 #endif /* LIBPIZZA_H */

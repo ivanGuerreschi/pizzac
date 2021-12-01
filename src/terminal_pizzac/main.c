@@ -33,21 +33,23 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  /* FILE *file_pizza = NULL; */
-  /* char *file = NULL; */
-  /* const char *file_name = "/.pizza.dat"; */
+  FILE *file_pizza, *file_row;
+  char *file;
+  const char *file_name = "/home/ivan/.pizza.txt";
 
-  /* file = malloc (strlen (getenv ("HOME") + strlen (file_name) + 1)); */
-  /* strcpy (file, getenv ("HOME")); */
-  /* strcat (file, file_name); */
-  
-  /* open_file (&file_pizza, file); */
+  file = malloc (strlen (getenv ("HOME")) + strlen (file_name) + 1);
+  strcat (strcpy (file, getenv ("HOME")), file_name);
 
-  /* close_file (&file_pizza); */
-  /* free (file); */
+  free (file);
+
+  open_file (&file_pizza, file_name);
+  open_file (&file_row, file_name);
+
+  int row = count_row_file (file_row);
+  pizza_t *pizza = all_pizzas (file_pizza, row);
 
   int menu = 0;
-   
+
   while (true)
     {
       menu = print_menu ();
@@ -55,10 +57,32 @@ main (void)
       switch (menu)
         {
         case 1:
+          for (int i = 0; i < row; i++)
+            {
+              free (pizza[i].ingrediants.flour_type);
+              free (pizza[i].ingrediants.yeast_type);
+            }
+
+          free (pizza);
+          close_file (&file_pizza);
+		  close_file (&file_row);
+
           exit (1);
           break;
-	}
+
+        case 2:
+          for (int i = 0; i < row; i++)
+            printf ("%s-%.2lf-%s-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf\n",
+                    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
+                    pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
+                    pizza[i].ingrediants.grams_water,
+                    pizza[i].ingrediants.grams_salt,
+                    pizza[i].ingrediants.grams_sugar,
+                    pizza[i].ingrediants.grams_oil,
+                    pizza[i].preparation.cooking_time,
+                    pizza[i].preparation.oven_temperature);
+        }
     }
- 
+
   return 0;
 }
