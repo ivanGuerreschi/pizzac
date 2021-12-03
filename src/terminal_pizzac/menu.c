@@ -31,9 +31,10 @@ print_menu (void)
 
   puts ("----------------------------------------------");
   puts ("terminalpizzac\n");
-  puts ("(1, 2) Input number");
+  puts ("(1, 2, 3) Input number");
   puts ("(1) Quit ");
   puts ("(2) Print all pizzas");
+  puts ("(3) Create pizza");
   puts ("----------------------------------------------");
 
   if (fgets (buffer, sizeof (buffer), stdin) != NULL)

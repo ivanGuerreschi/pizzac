@@ -27,6 +27,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "pizza.h"
 #include "info.h"
 
+void print_all_pizza (pizza_t *, int);
+pizza_t input_create_pizza (void);
+
 int
 main (void)
 {
@@ -65,24 +68,140 @@ main (void)
 
           free (pizza);
           close_file (&file_pizza);
-		  close_file (&file_row);
+	  close_file (&file_row);
 
           exit (1);
           break;
 
         case 2:
-          for (int i = 0; i < row; i++)
-            printf ("%s-%.2lf-%s-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf\n",
-                    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
-                    pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
-                    pizza[i].ingrediants.grams_water,
-                    pizza[i].ingrediants.grams_salt,
-                    pizza[i].ingrediants.grams_sugar,
-                    pizza[i].ingrediants.grams_oil,
-                    pizza[i].preparation.cooking_time,
-                    pizza[i].preparation.oven_temperature);
+	  print_all_pizza (pizza, row);
+	  break;
+
+	case 3:
+	  create_pizza(file_pizza, input_create_pizza ());
+	  break;
         }
     }
 
   return 0;
+}
+
+
+void
+print_all_pizza (pizza_t *pizza, int row)
+{
+  for (int i = 0; i < row; i++)
+    printf ("%s-%.2lf-%s-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf\n",
+	    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
+	    pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
+	    pizza[i].ingrediants.grams_water,
+	    pizza[i].ingrediants.grams_salt,
+	    pizza[i].ingrediants.grams_sugar,
+	    pizza[i].ingrediants.grams_oil,
+	    pizza[i].preparation.cooking_time,
+	    pizza[i].preparation.oven_temperature);
+}
+
+pizza_t
+input_create_pizza (void)
+{
+  pizza_t pizza;
+  char buffer[BUFSIZ];
+  
+  puts ("Flour type");
+  char *flour_type = calloc (50, sizeof (char));  
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      strcpy (flour_type, buffer);
+      pizza.ingrediants.flour_type = calloc (strlen (flour_type) + 1, sizeof (char));
+      strcpy (pizza.ingrediants.flour_type, flour_type);
+      free (flour_type);
+    }
+ 
+
+  puts ("Grams flour");
+  double grams_flour;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_flour = atoi (buffer);
+      pizza.ingrediants.grams_flour = grams_flour;
+    }
+
+  puts ("Yeast type");
+  char *yeast_type = calloc (50, sizeof (char));  
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      strcpy (yeast_type, buffer);
+      pizza.ingrediants.yeast_type = calloc (strlen (yeast_type) + 1, sizeof (char));
+      strcpy (pizza.ingrediants.yeast_type, yeast_type);
+      free (yeast_type);
+    }
+
+  puts ("Grams yeast");
+  double grams_yeast;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_yeast = atoi (buffer);
+      pizza.ingrediants.grams_yeast = grams_yeast;
+    }
+
+  puts ("Grams water");
+  double grams_water;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_water = atoi (buffer);
+      pizza.ingrediants.grams_water = grams_water;
+    }
+
+  puts ("Grams salt");
+  double grams_salt;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_salt = atoi (buffer);
+      pizza.ingrediants.grams_salt = grams_salt;
+    }
+
+  puts ("Grams sugar");
+  double grams_sugar;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_sugar = atoi (buffer);
+      pizza.ingrediants.grams_sugar = grams_sugar;
+    }
+
+  puts ("Grams oil");
+  double grams_oil;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      grams_oil = atoi (buffer);
+      pizza.ingrediants.grams_oil = grams_oil;
+    }
+
+  puts ("Cooking time");
+  double cooking_time;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      cooking_time  = atoi (buffer);
+      pizza.preparation.cooking_time = cooking_time;
+    }
+
+  puts ("Oven temperature");
+  double oven_temperature;
+  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+    {
+      buffer[strcspn (buffer, "\r\n")] = 0;
+      oven_temperature = atoi (buffer);
+      pizza.preparation.oven_temperature = oven_temperature;
+    }
+  
+  return pizza;
 }

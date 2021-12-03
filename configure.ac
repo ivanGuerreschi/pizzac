@@ -35,8 +35,10 @@ AC_PROG_RANLIB
 AC_CHECK_HEADERS([stdlib.h string.h])
 AC_CHECK_HEADER_STDBOOL
 
-# Checks for library functions.                                             
+# Checks for library functions.
 AC_FUNC_MALLOC
+AC_CHECK_FUNCS([strcspn])
+
 
 # Check for Guile
 PKG_CHECK_MODULES([GUILE], [guile-3.0])

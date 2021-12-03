@@ -21,6 +21,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "pizza.h"
 
 void
@@ -65,8 +66,8 @@ pizza_t
 
   for (int i = 0; i < row; i++)
     {
-      pizza[i].ingrediants.flour_type = malloc (50 * sizeof (char));
-      pizza[i].ingrediants.yeast_type = malloc (50 * sizeof (char));
+      pizza[i].ingrediants.flour_type = calloc (50, sizeof (char));
+      pizza[i].ingrediants.yeast_type = calloc (50, sizeof (char));
     }
 
   int n = 0;
@@ -122,3 +123,59 @@ pizza_t
  
   return pizza;
 }
+
+
+void create_pizza (FILE *file, pizza_t pizza)
+{
+  char buffer[BUFSIZ];
+  char *new_pizza = calloc (1,1);
+  
+  strcpy (buffer, pizza.ingrediants.flour_type);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat (buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_flour);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+  
+  strcpy (buffer, pizza.ingrediants.yeast_type);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_yeast);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_water);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_salt);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+  
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_sugar);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_oil);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.preparation.cooking_time);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+
+  sprintf (buffer, "%.2lf", pizza.preparation.oven_temperature);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat(buffer, " "));
+  
+  printf ("%s\n", new_pizza);
+
+  fprintf (file, "%s\n", new_pizza);
+  
+  free (pizza.ingrediants.flour_type);
+  free (pizza.ingrediants.yeast_type);
+  free (new_pizza);
+}
+

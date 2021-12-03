@@ -50,5 +50,6 @@ void open_file (FILE **, const char *name_file);
 void close_file (FILE **);
 int count_row_file (FILE *);
 pizza_t *all_pizzas (FILE *, int);
+void create_pizza (FILE *, pizza_t);
 
 #endif /* LIBPIZZA_H */
