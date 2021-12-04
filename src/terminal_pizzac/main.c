@@ -69,7 +69,6 @@ main (void)
   return 0;
 }
 
-
 void
 print_all_pizza (const char *file_name)
 {
@@ -80,9 +79,13 @@ print_all_pizza (const char *file_name)
 
   int row = count_row_file (file_row);
   pizza_t *pizza = all_pizzas (file_pizza, row);
+
+  puts ("Flour type-Grams flour-Yeast type-Grams yeast-Grams water-Grams salt-"
+	"Grams sugar-Grams oil-Cooking time-Oven temperature");
   
   for (int i = 0; i < row; i++)
-    printf ("%s-%.2lf-%s-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf\n",
+    printf ("%s    %.2lfgr    %s    %.2lfgr    %.2lfgr    %.2lfgr    "
+	    "%.2lfgr    %.2lfgr    %.2lfgr    %.2lf°\n",
 	    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
 	    pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
 	    pizza[i].ingrediants.grams_water,
