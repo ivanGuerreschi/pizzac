@@ -27,16 +27,15 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "pizza.h"
 #include "info.h"
 
-void print_all_pizza (pizza_t *, int);
-pizza_t input_create_pizza (void);
+void print_all_pizza (const char *);
+void input_create_pizza (const char *);
 
 int
 main (void)
 {
   puts (print_version ());
   puts (print_license ());
-
-  FILE *file_pizza, *file_row;
+  
   char *file;
   const char *file_name = "/home/ivan/.pizza.txt";
 
@@ -44,12 +43,6 @@ main (void)
   strcat (strcpy (file, getenv ("HOME")), file_name);
 
   free (file);
-
-  open_file (&file_pizza, file_name);
-  open_file (&file_row, file_name);
-
-  int row = count_row_file (file_row);
-  pizza_t *pizza = all_pizzas (file_pizza, row);
 
   int menu = 0;
 
@@ -60,25 +53,15 @@ main (void)
       switch (menu)
         {
         case 1:
-          for (int i = 0; i < row; i++)
-            {
-              free (pizza[i].ingrediants.flour_type);
-              free (pizza[i].ingrediants.yeast_type);
-            }
-
-          free (pizza);
-          close_file (&file_pizza);
-	  close_file (&file_row);
-
           exit (1);
           break;
 
         case 2:
-	  print_all_pizza (pizza, row);
+	  print_all_pizza (file_name);
 	  break;
 
 	case 3:
-	  create_pizza(file_pizza, input_create_pizza ());
+	  input_create_pizza (file_name);
 	  break;
         }
     }
@@ -88,8 +71,16 @@ main (void)
 
 
 void
-print_all_pizza (pizza_t *pizza, int row)
+print_all_pizza (const char *file_name)
 {
+
+  FILE *file_pizza, *file_row;
+  open_file (&file_pizza, file_name);
+  open_file (&file_row, file_name);
+
+  int row = count_row_file (file_row);
+  pizza_t *pizza = all_pizzas (file_pizza, row);
+  
   for (int i = 0; i < row; i++)
     printf ("%s-%.2lf-%s-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf-%.2lf\n",
 	    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
@@ -100,10 +91,20 @@ print_all_pizza (pizza_t *pizza, int row)
 	    pizza[i].ingrediants.grams_oil,
 	    pizza[i].preparation.cooking_time,
 	    pizza[i].preparation.oven_temperature);
+
+  for (int i = 0; i < row; i++)
+    {
+      free (pizza[i].ingrediants.flour_type);
+      free (pizza[i].ingrediants.yeast_type);
+    }
+  
+  free (pizza);
+  close_file (&file_pizza);
+  close_file (&file_row);
 }
 
-pizza_t
-input_create_pizza (void)
+void
+input_create_pizza (const char *file_name)
 {
   pizza_t pizza;
   char buffer[BUFSIZ];
@@ -202,6 +203,12 @@ input_create_pizza (void)
       oven_temperature = atoi (buffer);
       pizza.preparation.oven_temperature = oven_temperature;
     }
+
+
+  FILE *file_pizza;
+  open_file (&file_pizza, file_name);
   
-  return pizza;
+  create_pizza (file_pizza, pizza);
+
+  close_file (&file_pizza);
 }
