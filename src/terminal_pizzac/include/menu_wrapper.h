@@ -1,4 +1,4 @@
-/* main.c
+/* menu_wrapper.h
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,50 +19,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "include/menu.h"
-#include "include/menu_wrapper.h"
-#include "pizza.h"
-#include "info.h"
+#ifndef MENU_WRAPPER_H
+#define MENU_WRAPPER_H
 
-int
-main (void)
-{
-  puts (print_version ());
-  puts (print_license ());
-  
-  char *file;
-  const char *file_name = "/home/ivan/.pizza.txt";
+void print_all_pizza (const char *file_name);
+void input_create_pizza (const char *file_name);
 
-  file = malloc (strlen (getenv ("HOME")) + strlen (file_name) + 1);
-  strcat (strcpy (file, getenv ("HOME")), file_name);
-
-  free (file);
-
-  int menu = 0;
-
-  while (true)
-    {
-      menu = print_menu ();
-
-      switch (menu)
-        {
-        case 1:
-          exit (1);
-          break;
-
-        case 2:
-	  print_all_pizza (file_name);
-	  break;
-
-	case 3:
-	  input_create_pizza (file_name);
-	  break;
-        }
-    }
-
-  return 0;
-}
+#endif /* MENU_WRAPPER_H */

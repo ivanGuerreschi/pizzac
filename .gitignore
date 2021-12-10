@@ -53,6 +53,7 @@ Makefile
 
 src/terminal_pizzac/main.o
 src/terminal_pizzac/menu.o
+src/terminal_pizzac/menu_wrapper.o
 src/terminal_pizzac/terminalpizzac
 src/terminal_pizzac/.deps/*
 
@@ -64,7 +65,6 @@ lib/.deps/*
 src/guile_pizzac/guilepizzac
 src/guile_pizzac/guilepizzac-guile_pizza.o
 src/guile_pizzac/.deps/*
-
 
 .dir-locals.el
 GPATH
