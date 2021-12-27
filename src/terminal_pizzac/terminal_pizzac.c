@@ -1,4 +1,4 @@
-/* main.c
+/* terminal_pizzac.c
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -23,6 +23,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include "include/menu.h"
 #include "include/menu_wrapper.h"
 #include "pizza.h"
@@ -34,17 +37,13 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  char *file;
-  const char *file_name = "/home/ivan/.pizza.txt";
+  char *file_name;
+  const char *file_pizza = "/.pizza.txt";
 
-  file = malloc (strlen (getenv ("HOME")) + strlen (file_name) + 1);
+  if ((file_name = getenv ("HOME")) == NULL)
+    file_name = getpwuid (getuid())->pw_dir;
 
-  if (file)
-    {
-      strcat (strcpy (file, getenv ("HOME")), file_name);
-    }
-
-  free (file);
+  strcat (file_name, file_pizza);
 
   int menu = 0;
 
