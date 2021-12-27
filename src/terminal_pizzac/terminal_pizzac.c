@@ -33,12 +33,16 @@ main (void)
 {
   puts (print_version ());
   puts (print_license ());
-  
+
   char *file;
   const char *file_name = "/home/ivan/.pizza.txt";
 
   file = malloc (strlen (getenv ("HOME")) + strlen (file_name) + 1);
-  strcat (strcpy (file, getenv ("HOME")), file_name);
+
+  if (file)
+    {
+      strcat (strcpy (file, getenv ("HOME")), file_name);
+    }
 
   free (file);
 
@@ -55,12 +59,12 @@ main (void)
           break;
 
         case 2:
-	  print_all_pizza (file_name);
-	  break;
+          print_all_pizza (file_name);
+          break;
 
-	case 3:
-	  input_create_pizza (file_name);
-	  break;
+        case 3:
+          input_create_pizza (file_name);
+          break;
         }
     }
 

@@ -58,7 +58,7 @@ pizza_t
 {
   pizza_t *pizza = calloc (row + 1, sizeof (pizza_t));
 
-  if (pizza == NULL)
+  if (!pizza)
     {
       perror ("Error allocation failed");
       exit (0);
@@ -77,40 +77,40 @@ pizza_t
     {
       res = fscanf (file, "%s", pizza[n].ingrediants.flour_type);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_flour);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%s", pizza[n].ingrediants.yeast_type);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_yeast);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_water);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_salt);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_sugar);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_oil);
       if (res != 1)
-	break;
+        break;
 
 
       res = fscanf (file, "%lf", &pizza[n].preparation.cooking_time);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%lf", &pizza[n].preparation.oven_temperature);
       if (res != 1)
@@ -119,8 +119,8 @@ pizza_t
           exit (1);
         }
       n++;
-    } 
- 
+    }
+
   return pizza;
 }
 
@@ -129,53 +129,57 @@ void create_pizza (FILE *file, pizza_t pizza)
 {
   char buffer[BUFSIZ];
   char *new_pizza = calloc (1,1);
-  
+
+  if (!new_pizza)
+    {
+      perror ("Error: Allocation failed");
+      exit (1);
+    }
+
   strcpy (buffer, pizza.ingrediants.flour_type);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_flour);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
-  
+  strcat (new_pizza, strcat (buffer, " "));
+
   strcpy (buffer, pizza.ingrediants.yeast_type);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_yeast);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_water);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_salt);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
-  
+  strcat (new_pizza, strcat (buffer, " "));
+
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_sugar);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.ingrediants.grams_oil);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.preparation.cooking_time);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
+  strcat (new_pizza, strcat (buffer, " "));
 
   sprintf (buffer, "%.2lf", pizza.preparation.oven_temperature);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
-  strcat (new_pizza, strcat(buffer, " "));
-  
+  strcat (new_pizza, strcat (buffer, " "));
+
   printf ("%s\n", new_pizza);
 
   fprintf (file, "%s\n", new_pizza);
-  
-  free (pizza.ingrediants.flour_type);
-  free (pizza.ingrediants.yeast_type);
+
   free (new_pizza);
 }
 

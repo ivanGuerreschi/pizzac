@@ -51,7 +51,7 @@ m4/lt~obsolete.m4
 Makefile
 
 
-src/terminal_pizzac/main.o
+src/terminal_pizzac/terminal_pizzac.o
 src/terminal_pizzac/menu.o
 src/terminal_pizzac/menu_wrapper.o
 src/terminal_pizzac/terminalpizzac

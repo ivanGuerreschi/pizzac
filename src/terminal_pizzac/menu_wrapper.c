@@ -36,26 +36,26 @@ print_all_pizza (const char *file_name)
   pizza_t *pizza = all_pizzas (file_pizza, row);
 
   puts ("Flour type-Grams flour-Yeast type-Grams yeast-Grams water-Grams salt-"
-	"Grams sugar-Grams oil-Cooking time-Oven temperature");
-  
+        "Grams sugar-Grams oil-Cooking time-Oven temperature");
+
   for (int i = 0; i < row; i++)
     printf ("%s    %.2lfgr    %s    %.2lfgr    %.2lfgr    %.2lfgr    "
-	    "%.2lfgr    %.2lfgr    %.2lfgr    %.2lf°\n",
-	    pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
-	    pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
-	    pizza[i].ingrediants.grams_water,
-	    pizza[i].ingrediants.grams_salt,
-	    pizza[i].ingrediants.grams_sugar,
-	    pizza[i].ingrediants.grams_oil,
-	    pizza[i].preparation.cooking_time,
-	    pizza[i].preparation.oven_temperature);
+            "%.2lfgr    %.2lfgr    %.2lfgr    %.2lf°\n",
+            pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
+            pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
+            pizza[i].ingrediants.grams_water,
+            pizza[i].ingrediants.grams_salt,
+            pizza[i].ingrediants.grams_sugar,
+            pizza[i].ingrediants.grams_oil,
+            pizza[i].preparation.cooking_time,
+            pizza[i].preparation.oven_temperature);
 
   for (int i = 0; i < row; i++)
     {
       free (pizza[i].ingrediants.flour_type);
       free (pizza[i].ingrediants.yeast_type);
     }
-  
+
   free (pizza);
   close_file (&file_pizza);
   close_file (&file_row);
@@ -66,22 +66,32 @@ input_create_pizza (const char *file_name)
 {
   pizza_t pizza;
   char buffer[BUFSIZ];
-  
+
   puts ("Flour type");
-  char *flour_type = calloc (50, sizeof (char));  
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+  char *flour_type = calloc (50, sizeof (char));
+
+  if (flour_type)
     {
-      buffer[strcspn (buffer, "\r\n")] = 0;
-      strcpy (flour_type, buffer);
-      pizza.ingrediants.flour_type = calloc (strlen (flour_type) + 1, sizeof (char));
-      strcpy (pizza.ingrediants.flour_type, flour_type);
-      free (flour_type);
+
+      if (fgets (buffer, sizeof (buffer), stdin))
+        {
+          buffer[strcspn (buffer, "\r\n")] = 0;
+          strcpy (flour_type, buffer);
+          pizza.ingrediants.flour_type = calloc (strlen (flour_type) + 1, sizeof (char));
+
+          if (pizza.ingrediants.flour_type)
+            {
+              strcpy (pizza.ingrediants.flour_type, flour_type);
+            }
+        }
     }
- 
+
+  free (flour_type);
 
   puts ("Grams flour");
   double grams_flour;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_flour = atoi (buffer);
@@ -89,19 +99,30 @@ input_create_pizza (const char *file_name)
     }
 
   puts ("Yeast type");
-  char *yeast_type = calloc (50, sizeof (char));  
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+  char *yeast_type = calloc (50, sizeof (char));
+
+  if (yeast_type)
     {
-      buffer[strcspn (buffer, "\r\n")] = 0;
-      strcpy (yeast_type, buffer);
-      pizza.ingrediants.yeast_type = calloc (strlen (yeast_type) + 1, sizeof (char));
-      strcpy (pizza.ingrediants.yeast_type, yeast_type);
-      free (yeast_type);
+
+      if (fgets (buffer, sizeof (buffer), stdin))
+        {
+          buffer[strcspn (buffer, "\r\n")] = 0;
+          strcpy (yeast_type, buffer);
+          pizza.ingrediants.yeast_type = calloc (strlen (yeast_type) + 1, sizeof (char));
+
+          if (pizza.ingrediants.yeast_type)
+            {
+              strcpy (pizza.ingrediants.yeast_type, yeast_type);
+            }
+        }
     }
+
+  free (yeast_type);
 
   puts ("Grams yeast");
   double grams_yeast;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_yeast = atoi (buffer);
@@ -110,7 +131,8 @@ input_create_pizza (const char *file_name)
 
   puts ("Grams water");
   double grams_water;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_water = atoi (buffer);
@@ -119,7 +141,8 @@ input_create_pizza (const char *file_name)
 
   puts ("Grams salt");
   double grams_salt;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_salt = atoi (buffer);
@@ -128,7 +151,8 @@ input_create_pizza (const char *file_name)
 
   puts ("Grams sugar");
   double grams_sugar;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_sugar = atoi (buffer);
@@ -137,7 +161,8 @@ input_create_pizza (const char *file_name)
 
   puts ("Grams oil");
   double grams_oil;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       grams_oil = atoi (buffer);
@@ -146,7 +171,8 @@ input_create_pizza (const char *file_name)
 
   puts ("Cooking time");
   double cooking_time;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       cooking_time  = atoi (buffer);
@@ -155,18 +181,18 @@ input_create_pizza (const char *file_name)
 
   puts ("Oven temperature");
   double oven_temperature;
-  if (fgets (buffer, sizeof (buffer), stdin) != NULL)
+  if (fgets (buffer, sizeof (buffer), stdin))
     {
       buffer[strcspn (buffer, "\r\n")] = 0;
       oven_temperature = atoi (buffer);
       pizza.preparation.oven_temperature = oven_temperature;
     }
 
-
   FILE *file_pizza;
   open_file (&file_pizza, file_name);
-  
   create_pizza (file_pizza, pizza);
-
   close_file (&file_pizza);
+
+  free (pizza.ingrediants.flour_type);
+  free (pizza.ingrediants.yeast_type);
 }

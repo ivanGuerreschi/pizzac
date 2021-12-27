@@ -27,5 +27,5 @@ AM_CFLAGS = -I $(top_srcdir)/src/terminal_pizzac/ -I $(top_srcdir)/lib \
 	  -Wjump-misses-init -Wlogical-op
 
 bin_PROGRAMS = terminalpizzac
-terminalpizzac_SOURCES = main.c menu.c menu_wrapper.c
+terminalpizzac_SOURCES = terminal_pizzac.c menu.c menu_wrapper.c
 terminalpizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS)

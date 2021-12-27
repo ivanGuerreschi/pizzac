@@ -41,6 +41,8 @@ AC_FUNC_MALLOC
 AC_FUNC_REALLOC
 AC_CHECK_FUNCS([strcspn])
 
+# Check -fanalyze flag                                                         
+AX_CHECK_COMPILE_FLAG(-fanalyzer, [AX_APPEND_FLAG([-fanalyzer])])
 
 # Check for Guile
 PKG_CHECK_MODULES([GUILE], [guile-3.0])

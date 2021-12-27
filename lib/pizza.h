@@ -31,7 +31,7 @@ struct ingrediants_s
   double grams_water;
   double grams_salt;
   double grams_sugar;
-  double grams_oil;  
+  double grams_oil;
 };
 
 struct preparation_s

@@ -29,7 +29,7 @@ inner_main (void *closure, int argc, char **argv)
 {
   scm_c_define_gsubr ("version", 0, 0, 0, version);
   scm_c_define_gsubr ("license", 0, 0, 0, license);
-  
+
   scm_shell (argc, argv);
 }
 
