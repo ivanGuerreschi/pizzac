@@ -22,6 +22,8 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef LIBPIZZA_H
 #define LIBPIZZA_H
 
+#include <stdio.h>
+
 struct ingrediants_s
 {
   char *flour_type;
