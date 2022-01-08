@@ -1,5 +1,5 @@
 # Makefile.am
-# Copyright (C) 2021 Ivan Guerreschi
+# Copyright (C) 2021-2022 Ivan Guerreschi
 #
 # This file is part of pizzac.
 #
@@ -10,19 +10,23 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#  
+#
 # pizzac is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
+# along with pizzac. If not, see <http://www.gnu.org/licenses/>.
 
-SUBDIRS = \
-	  lib \
-	  src/terminal_pizzac \
-	  src/guile_pizzac \
-          src/gtk_pizzac   
+AM_CFLAGS = $(GTK_CFLAGS) -I $(top_srcdir)/src/gtk_pizzac/ -I $(top_srcdir)/lib \
+          -Wall -Wextra -Wpedantic \
+          -Wformat=2 -Wno-unused-parameter -Wshadow \
+          -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
+          -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
+	  -Wjump-misses-init -Wlogical-op
 
-dist_doc_DATA = README.md
+bin_PROGRAMS = gtkpizzac
+gtkpizzac_SOURCES = gtk_pizzac.c
+gtkpizzac_LDFLAGS = -fuse-ld=gold
+gtkpizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS) $(GTK_LIBS)

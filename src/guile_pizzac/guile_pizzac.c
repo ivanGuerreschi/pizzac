@@ -1,4 +1,4 @@
-/* guile_pizza.c
+/* guile_pizzac.c
    Copyright (C) 2021 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -22,8 +22,13 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <libguile.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include "info.h"
 #include "pizza.h"
+
+char *file_name;
 
 static SCM version ();
 static SCM license ();
@@ -42,6 +47,11 @@ inner_main (void *closure, int argc, char **argv)
 int
 main (int argc, char **argv)
 {
+  const char *file_pizza_txt = "/.pizza.txt";
+  if ((file_name = getenv ("HOME")) == NULL)
+    file_name = getpwuid (getuid())->pw_dir;
+
+  strcat (file_name, file_pizza_txt);
   scm_boot_guile (argc, argv, inner_main, 0);
   return 0;
 }
@@ -63,8 +73,6 @@ license (void)
 static SCM
 allpizzas (void)
 {
-  const char *file_name = "/home/ivan/.pizza.txt";
-
   FILE *file_pizza, *file_row;
   open_file (&file_pizza, file_name);
   open_file (&file_row, file_name);
@@ -72,7 +80,7 @@ allpizzas (void)
   int row = count_row_file (file_row);
   pizza_t *pizza = all_pizzas (file_pizza, row);
 
-  const char *header = "Flour type-Grams flour-Yeast type-Grams yeast-Grams water-Grams salt-Grams sugar-Grams oil-Grams Cooking time Oven temperature\n";
+  const char *header ="Flour type-Grams flour-Yeast type-Grams yeast-Grams water-Grams salt-Grams sugar-Grams oil-Cooking time-Oven temperature\n";
   char pizzas[1024];
   char buffer [1024];
 
@@ -110,6 +118,17 @@ allpizzas (void)
       strcat (pizzas, "\n");
     }
 
+  for (int i = 0; i < row; i++)
+    {
+      free (pizza[i].ingrediants.flour_type);
+      free (pizza[i].ingrediants.yeast_type);
+    }
+
+  free (pizza);
+  close_file (&file_pizza);
+  close_file (&file_row);
+
   SCM result = scm_from_utf8_string (pizzas);
   return result;
 }
+

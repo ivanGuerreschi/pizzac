@@ -63,8 +63,12 @@ lib/info.o
 lib/.deps/*
 
 src/guile_pizzac/guilepizzac
-src/guile_pizzac/guilepizzac-guile_pizza.o
+src/guile_pizzac/guilepizzac-guile_pizzac.o
 src/guile_pizzac/.deps/*
+
+src/gtk_pizzac/gtkpizzac
+src/gtk_pizzac/gtk_pizzac.o
+src/gtk_pizzac/.deps/*
 
 .dir-locals.el
 GPATH
