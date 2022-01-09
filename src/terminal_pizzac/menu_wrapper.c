@@ -36,11 +36,11 @@ print_all_pizza (const char *file_name)
   pizza_t *pizza = all_pizzas (file_pizza, row);
 
   puts ("Flour type-Grams flour-Yeast type-Grams yeast-Grams water-Grams salt-"
-        "Grams sugar-Grams oil-Cooking time-Oven temperature");
+        "Grams sugar-Grams oil-Cooking time-Oven temperature-Condiment");
 
   for (int i = 0; i < row; i++)
-    printf ("%s    %.2lfgr    %s    %.2lfgr    %.2lfgr    %.2lfgr    "
-            "%.2lfgr    %.2lfgr    %.2lfgr    %.2lf°\n",
+    printf ("%s    %dgr    %s    %dgr    %dgr    %dgr    "
+            "%dgr    %dgr    %dgr    %d°    %s\n",
             pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
             pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
             pizza[i].ingrediants.grams_water,
@@ -48,12 +48,14 @@ print_all_pizza (const char *file_name)
             pizza[i].ingrediants.grams_sugar,
             pizza[i].ingrediants.grams_oil,
             pizza[i].preparation.cooking_time,
-            pizza[i].preparation.oven_temperature);
+            pizza[i].preparation.oven_temperature,
+	    pizza[i].preparation.condiment);
 
   for (int i = 0; i < row; i++)
     {
       free (pizza[i].ingrediants.flour_type);
       free (pizza[i].ingrediants.yeast_type);
+      free (pizza[i].preparation.condiment);
     }
 
   free (pizza);
@@ -187,7 +189,28 @@ input_create_pizza (const char *file_name)
       oven_temperature = atoi (buffer);
       pizza.preparation.oven_temperature = oven_temperature;
     }
+  
+  puts ("Condiment");
+  char *condiment = calloc (250, sizeof (char));
 
+  if (condiment)
+    {
+
+      if (fgets (buffer, sizeof (buffer), stdin))
+        {
+          buffer[strcspn (buffer, "\r\n")] = 0;
+          strcpy (condiment, buffer);
+          pizza.preparation.condiment = calloc (strlen (condiment) + 1, sizeof (char));
+
+          if (pizza.preparation.condiment)
+            {
+              strcpy (pizza.preparation.condiment, condiment);
+            }
+        }
+    }
+
+  free (condiment);
+ 
   FILE *file_pizza;
   open_file (&file_pizza, file_name);
   create_pizza (file_pizza, pizza);
@@ -195,4 +218,5 @@ input_create_pizza (const char *file_name)
 
   free (pizza.ingrediants.flour_type);
   free (pizza.ingrediants.yeast_type);
+  free (pizza.preparation.condiment);
 }

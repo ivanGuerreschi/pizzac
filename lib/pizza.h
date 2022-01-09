@@ -27,19 +27,20 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 struct ingrediants_s
 {
   char *flour_type;
-  double grams_flour;
+  int grams_flour;
   char *yeast_type;
-  double grams_yeast;
-  double grams_water;
-  double grams_salt;
-  double grams_sugar;
-  double grams_oil;
+  int grams_yeast;
+  int grams_water;
+  int grams_salt;
+  int grams_sugar;
+  int grams_oil;
 };
 
 struct preparation_s
 {
-  double cooking_time;
-  double oven_temperature;
+  int cooking_time;
+  int oven_temperature;
+  char *condiment;
 };
 
 typedef struct

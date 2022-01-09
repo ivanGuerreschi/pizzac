@@ -62,13 +62,14 @@ pizza_t
   if (!pizza)
     {
       perror ("Error allocation failed");
-      exit (0);
+      exit (1);
     }
 
   for (int i = 0; i < row; i++)
     {
       pizza[i].ingrediants.flour_type = calloc (50, sizeof (char));
       pizza[i].ingrediants.yeast_type = calloc (50, sizeof (char));
+      pizza[i].preparation.condiment = calloc (250, sizeof (char));
     }
 
   int n = 0;
@@ -80,7 +81,7 @@ pizza_t
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_flour);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_flour);
       if (res != 1)
         break;
 
@@ -88,37 +89,41 @@ pizza_t
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_yeast);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_yeast);
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_water);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_water);
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_salt);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_salt);
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_sugar);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_sugar);
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].ingrediants.grams_oil);
+      res = fscanf (file, "%d", &pizza[n].ingrediants.grams_oil);
       if (res != 1)
         break;
 
 
-      res = fscanf (file, "%lf", &pizza[n].preparation.cooking_time);
+      res = fscanf (file, "%d", &pizza[n].preparation.cooking_time);
       if (res != 1)
         break;
 
-      res = fscanf (file, "%lf", &pizza[n].preparation.oven_temperature);
+      res = fscanf (file, "%d", &pizza[n].preparation.oven_temperature);
       if (res != 1)
-        {
-          perror ("Error read file");
-          exit (1);
-        }
+        break;
+        
+      res = fscanf (file, "%s", pizza[n].preparation.condiment);
+      if (res != 1){
+      	perror ("Error read file");
+	exit (1);
+      }
+
       n++;
     }
 
@@ -129,7 +134,7 @@ pizza_t
 void create_pizza (FILE *file, pizza_t pizza)
 {
   char buffer[BUFSIZ];
-  char *new_pizza = calloc (1,1);
+  char *new_pizza = calloc (1, 1);
 
   if (!new_pizza)
     {
@@ -141,7 +146,7 @@ void create_pizza (FILE *file, pizza_t pizza)
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_flour);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_flour);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
@@ -149,34 +154,38 @@ void create_pizza (FILE *file, pizza_t pizza)
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_yeast);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_yeast);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_water);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_water);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_salt);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_salt);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_sugar);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_sugar);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.ingrediants.grams_oil);
+  sprintf (buffer, "%d", pizza.ingrediants.grams_oil);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.preparation.cooking_time);
+  sprintf (buffer, "%d", pizza.preparation.cooking_time);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
-  sprintf (buffer, "%.2lf", pizza.preparation.oven_temperature);
+  sprintf (buffer, "%d", pizza.preparation.oven_temperature);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
 
+  strcpy (buffer, pizza.preparation.condiment);
+  new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
+  strcat (new_pizza, strcat (buffer, " "));
+  
   printf ("%s\n", new_pizza);
 
   fprintf (file, "%s\n", new_pizza);

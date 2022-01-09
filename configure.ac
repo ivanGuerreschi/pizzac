@@ -1,5 +1,5 @@
 # configure.ac
-# Copyright (C) 2021 Ivan Guerreschi
+# Copyright (C) 2021-2022 Ivan Guerreschi
 #
 # This file is part of pizzac.
 #
