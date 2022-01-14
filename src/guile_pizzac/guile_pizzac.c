@@ -30,11 +30,11 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 char *file_name;
 
-SCM version ();
-SCM license ();
-SCM allpizzas ();
+static SCM version ();
+static SCM license ();
+static SCM allpizzas ();
 
-void
+static void
 inner_main (void *closure, int argc, char **argv)
 {
   scm_c_define_gsubr ("version", 0, 0, 0, version);
@@ -56,21 +56,21 @@ main (int argc, char **argv)
   return 0;
 }
 
-SCM
+static SCM
 version (void)
 {
   SCM result = scm_from_utf8_string (print_version ());
   return result;
 }
 
-SCM
+static SCM
 license (void)
 {
   SCM result = scm_from_utf8_string (print_license ());
   return result;
 }
 
-SCM
+static SCM
 allpizzas (void)
 {
   FILE *file_pizza, *file_row;
@@ -79,45 +79,45 @@ allpizzas (void)
 
   int row = count_row_file (file_row);
   pizza_t *pizza = all_pizzas (file_pizza, row);
-    
+
   const char *header ="Flour type-Grams flour-Yeast type-Grams yeast-Grams water-"
-    "Grams salt-Grams sugar-Grams oil-Cooking time-Oven temperature-Condiment\n";
-  
-  char pizzas[BUFSIZ];
+                      "Grams salt-Grams sugar-Grams oil-Cooking time-Oven temperature-Condiment\n";
+
   char buffer[BUFSIZ];
+  char pizzas[BUFSIZ];
 
   strcpy (pizzas, header);
 
   for (int i = 0; i < row; i++)
     {
       strcat (pizzas, pizza[i].ingrediants.flour_type);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_flour);
+
+      sprintf (buffer, " %dgr ", pizza[i].ingrediants.grams_flour);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
+
       strcat (pizzas, pizza[i].ingrediants.yeast_type);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_yeast);
+
+      sprintf (buffer, " %dgr ", pizza[i].ingrediants.grams_yeast);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_water);
+
+      sprintf (buffer, "%dgr ", pizza[i].ingrediants.grams_water);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_salt);
+
+      sprintf (buffer, "%dgr ", pizza[i].ingrediants.grams_salt);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_sugar);
+
+      sprintf (buffer, "%dgr ", pizza[i].ingrediants.grams_sugar);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].ingrediants.grams_oil);
+
+      sprintf (buffer, "%dgr ", pizza[i].ingrediants.grams_oil);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].preparation.cooking_time);
+
+      sprintf (buffer, "%dm ", pizza[i].preparation.cooking_time);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
-      sprintf (buffer, "%d", pizza[i].preparation.oven_temperature);
+
+      sprintf (buffer, "%d˚ ", pizza[i].preparation.oven_temperature);
       strcat (pizzas, buffer);
-      strcat (pizzas, " ");
+
       strcat (pizzas, pizza[i].preparation.condiment);
       strcat (pizzas, "\n");
     }

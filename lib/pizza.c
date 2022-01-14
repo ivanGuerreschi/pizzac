@@ -1,5 +1,5 @@
 /* pizza.c
-   Copyright (C) 2021 Ivan Guerreschi
+   Copyright (C) 2021-2022 Ivan Guerreschi
 
 This file is part of pizzac.
 
@@ -117,12 +117,13 @@ pizza_t
       res = fscanf (file, "%d", &pizza[n].preparation.oven_temperature);
       if (res != 1)
         break;
-        
+
       res = fscanf (file, "%s", pizza[n].preparation.condiment);
-      if (res != 1){
-      	perror ("Error read file");
-	exit (1);
-      }
+      if (res != 1)
+        {
+          perror ("Error read file");
+          exit (1);
+        }
 
       n++;
     }
@@ -185,7 +186,7 @@ void create_pizza (FILE *file, pizza_t pizza)
   strcpy (buffer, pizza.preparation.condiment);
   new_pizza = realloc (new_pizza, strlen (new_pizza) + 2 + strlen (buffer));
   strcat (new_pizza, strcat (buffer, " "));
-  
+
   printf ("%s\n", new_pizza);
 
   fprintf (file, "%s\n", new_pizza);

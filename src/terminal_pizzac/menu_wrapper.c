@@ -40,7 +40,7 @@ print_all_pizza (const char *file_name)
 
   for (int i = 0; i < row; i++)
     printf ("%s    %dgr    %s    %dgr    %dgr    %dgr    "
-            "%dgr    %dgr    %dgr    %d°    %s\n",
+            "%dgr    %dgr    %dm    %d°    %s\n",
             pizza[i].ingrediants.flour_type, pizza[i].ingrediants.grams_flour,
             pizza[i].ingrediants.yeast_type, pizza[i].ingrediants.grams_yeast,
             pizza[i].ingrediants.grams_water,
@@ -49,7 +49,7 @@ print_all_pizza (const char *file_name)
             pizza[i].ingrediants.grams_oil,
             pizza[i].preparation.cooking_time,
             pizza[i].preparation.oven_temperature,
-	    pizza[i].preparation.condiment);
+            pizza[i].preparation.condiment);
 
   for (int i = 0; i < row; i++)
     {
@@ -189,7 +189,7 @@ input_create_pizza (const char *file_name)
       oven_temperature = atoi (buffer);
       pizza.preparation.oven_temperature = oven_temperature;
     }
-  
+
   puts ("Condiment");
   char *condiment = calloc (250, sizeof (char));
 
@@ -210,7 +210,7 @@ input_create_pizza (const char *file_name)
     }
 
   free (condiment);
- 
+
   FILE *file_pizza;
   open_file (&file_pizza, file_name);
   create_pizza (file_pizza, pizza);
