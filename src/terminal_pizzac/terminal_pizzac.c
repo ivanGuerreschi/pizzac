@@ -37,13 +37,13 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  char *file_name;
-  const char *file_pizza = "/.pizza.txt";
+  char *file;
+  const char *file_name = "/.pizza.txt";
 
-  if ((file_name = getenv ("HOME")) == NULL)
-    file_name = getpwuid (getuid())->pw_dir;
+  if ((file = getenv ("HOME")) == NULL)
+    file = getpwuid (getuid())->pw_dir;
 
-  strcat (file_name, file_pizza);
+  strcat (file, file_name);
 
   int menu = 0;
 
@@ -58,11 +58,11 @@ main (void)
           break;
 
         case 2:
-          print_all_pizza (file_name);
+          print_all_pizza (file);
           break;
 
         case 3:
-          input_create_pizza (file_name);
+          input_create_pizza (file);
           break;
         }
     }

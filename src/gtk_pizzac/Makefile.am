@@ -27,6 +27,6 @@ AM_CFLAGS = $(GTK_CFLAGS) -I $(top_srcdir)/src/gtk_pizzac/ -I $(top_srcdir)/lib 
 	  -Wjump-misses-init -Wlogical-op
 
 bin_PROGRAMS = gtkpizzac
-gtkpizzac_SOURCES = gtk_pizzac.c
+gtkpizzac_SOURCES = gtk_pizzac.c interface_pizza.c
 gtkpizzac_LDFLAGS = -fuse-ld=gold
 gtkpizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS) $(GTK_LIBS)

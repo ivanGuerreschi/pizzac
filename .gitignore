@@ -68,6 +68,7 @@ src/guile_pizzac/.deps/*
 
 src/gtk_pizzac/gtkpizzac
 src/gtk_pizzac/gtk_pizzac.o
+src/gtk_pizzac/interface_pizza.o
 src/gtk_pizzac/.deps/*
 
 .dir-locals.el
