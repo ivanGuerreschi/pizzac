@@ -26,6 +26,7 @@ AM_CFLAGS = $(GTK_CFLAGS) -I $(top_srcdir)/src/gtk_pizzac/ -I $(top_srcdir)/lib 
           -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
 	  -Wjump-misses-init -Wlogical-op
 
+nobase_include_HEADERS = include/interface_pizza.h include/entry_widgets.h
 bin_PROGRAMS = gtkpizzac
 gtkpizzac_SOURCES = gtk_pizzac.c interface_pizza.c
 gtkpizzac_LDFLAGS = -fuse-ld=gold

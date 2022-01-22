@@ -20,12 +20,13 @@
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>.
 
 AM_CFLAGS = -I $(top_srcdir)/src/terminal_pizzac/ -I $(top_srcdir)/lib \
-          -Wall -Wextra -Wpedantic \
-          -Wformat=2 -Wno-unused-parameter -Wshadow \
-          -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
-          -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
-	  -Wjump-misses-init -Wlogical-op
+	    -Wall -Wextra -Wpedantic \
+            -Wformat=2 -Wno-unused-parameter -Wshadow \
+            -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
+            -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
+	    -Wjump-misses-init -Wlogical-op
 
+nobase_include_HEADERS = include/menu.h include/menu_wrapper.h
 bin_PROGRAMS = terminalpizzac
 terminalpizzac_SOURCES = terminal_pizzac.c menu.c menu_wrapper.c
 terminalpizzac_LDFLAGS = -fuse-ld=gold

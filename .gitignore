@@ -72,6 +72,8 @@ src/gtk_pizzac/gtk_pizzac.o
 src/gtk_pizzac/interface_pizza.o
 src/gtk_pizzac/.deps/*
 
+build
+
 .dir-locals.el
 GPATH
 GRTAGS

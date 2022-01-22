@@ -19,8 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>. 
 
-SUBDIRS = \
-	  lib \
+SUBDIRS = lib \
 	  src/terminal_pizzac \
 	  src/guile_pizzac \
           src/gtk_pizzac   

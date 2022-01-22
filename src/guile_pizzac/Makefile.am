@@ -1,5 +1,4 @@
-# Makefile.am
-# Copyright (C) 2021 Ivan Guerreschi
+# Copyright (C) 2021-2022 Ivan Guerreschi
 #
 # This file is part of pizzac.
 #
@@ -19,15 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>.
 
-AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ -I $(top_srdir)/lib \
-	  -Wall -Wextra -Wpedantic \
-          -Wformat=2 -Wno-unused-parameter -Wshadow \
-          -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
-          -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
-	  -Wjump-misses-init -Wlogical-op
+AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ -I $(top_srcdir)/lib \
+	    -Wall -Wextra -Wpedantic \
+            -Wformat=2 -Wno-unused-parameter -Wshadow \
+            -Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
+            -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
+	    -Wjump-misses-init -Wlogical-op
 
 bin_PROGRAMS = guilepizzac
-guilepizzac_SOURCES = guile_pizzac.c
-guilepizzac_CFLAGS = @GUILE_CFLAGS@ -I $(top_builddir)/lib
+guilepizzac_SOURCES = guile_pizzac.c 
+guilepizzac_CFLAGS = @GUILE_CFLAGS@ -I $(top_srcdir)/lib
 guilepizzac_LDFLAGS = -fuse-ld=gold
 guilepizzac_LDADD = @GUILE_LIBS@ $(top_builddir)/lib/libpizza.a
