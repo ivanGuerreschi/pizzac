@@ -60,6 +60,7 @@ src/terminal_pizzac/.deps/*
 lib/libpizza.a
 lib/pizza.o
 lib/info.o
+lib/utility.o
 lib/.deps/*
 
 src/guile_pizzac/guilepizzac

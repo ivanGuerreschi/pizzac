@@ -22,13 +22,11 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <libguile.h>
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
 #include "info.h"
 #include "pizza.h"
+#include "utility.h"
 
-char *file_name;
+char *file;
 
 static SCM version ();
 static SCM license ();
@@ -47,11 +45,8 @@ inner_main (void *closure, int argc, char **argv)
 int
 main (int argc, char **argv)
 {
-  const char *file_pizza_txt = "/.pizza.txt";
-  if ((file_name = getenv ("HOME")) == NULL)
-    file_name = getpwuid (getuid())->pw_dir;
-
-  strcat (file_name, file_pizza_txt);
+  file = file_name ();
+  
   scm_boot_guile (argc, argv, inner_main, 0);
   return 0;
 }
@@ -74,8 +69,8 @@ static SCM
 allpizzas (void)
 {
   FILE *file_pizza, *file_row;
-  open_file (&file_pizza, file_name);
-  open_file (&file_row, file_name);
+  open_file (&file_pizza, file);
+  open_file (&file_row, file);
 
   int row = count_row_file (file_row);
   pizza_t *pizza = all_pizzas (file_pizza, row);

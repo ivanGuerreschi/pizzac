@@ -1,4 +1,4 @@
-/* menu.h
+/* uutility.h
    Copyright (C) 2021-2022 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,9 +19,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef MENU_H
-#define MENU_H
+#ifndef UTILITY_H
+#define UTILITY_H
 
-int print_menu (void);
+char *file_name (void);
 
-#endif /* MENU_H */
+#endif /* UTILITY_H */

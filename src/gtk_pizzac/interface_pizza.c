@@ -20,10 +20,8 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <gtk/gtk.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
 #include "pizza.h"
+#include "utility.h"
 #include "include/interface_pizza.h"
 #include "include/entry_widgets.h"
 
@@ -33,13 +31,7 @@ on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data)
   GtkTextBuffer *buffer;
   FILE *file_pizza, *file_row;
 
-  char *file;
-  const char *file_name = "/.pizza.txt";
-
-  if ((file = getenv ("HOME")) == NULL)
-    file = getpwuid (getuid())->pw_dir;
-
-  strcat (file, file_name);
+  char *file = file_name ();
 
   open_file (&file_pizza, file);
   open_file (&file_row, file);
@@ -103,13 +95,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
   const gchar *oven_temperature;
   const gchar *condiment;
 
-  char *file;
-  const char *file_name = "/.pizza.txt";
-
-  if ((file = getenv ("HOME")) == NULL)
-    file = getpwuid (getuid())->pw_dir;
-
-  strcat (file, file_name);
+  char *file = file_name ();
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_flour_type));
   flour_type = gtk_entry_buffer_get_text (buffer);

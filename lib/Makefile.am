@@ -27,8 +27,8 @@ AM_CFLAGS = -I $(top_srcdir)/lib \
 	  -Wjump-misses-init -Wlogical-op 	
 
 noinst_LIBRARIES = libpizza.a
-noinst_HEADERS = pizza.h info.h
+noinst_HEADERS = pizza.h info.h utility.h
 
 libpizza_a_SOURCES = \
 		     $(libpizza_a_HEADERS) \
-		     pizza.c info.c
+		     pizza.c info.c utility.c

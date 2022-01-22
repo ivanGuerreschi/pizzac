@@ -23,13 +23,11 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
 #include "include/menu.h"
 #include "include/menu_wrapper.h"
 #include "pizza.h"
 #include "info.h"
+#include "utility.h"
 
 int
 main (void)
@@ -37,14 +35,7 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  char *file;
-  const char *file_name = "/.pizza.txt";
-
-  if ((file = getenv ("HOME")) == NULL)
-    file = getpwuid (getuid())->pw_dir;
-
-  strcat (file, file_name);
-
+  char *file = file_name ();
   int menu = 0;
 
   while (true)
