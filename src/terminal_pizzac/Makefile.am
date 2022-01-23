@@ -29,5 +29,4 @@ AM_CFLAGS = -I $(top_srcdir)/src/terminal_pizzac/ -I $(top_srcdir)/lib \
 nobase_include_HEADERS = include/menu.h include/menu_wrapper.h
 bin_PROGRAMS = terminalpizzac
 terminalpizzac_SOURCES = terminal_pizzac.c menu.c menu_wrapper.c
-terminalpizzac_LDFLAGS = -fuse-ld=gold
 terminalpizzac_LDADD = $(top_builddir)/lib/libpizza.a $(AM_LDFLAGS)

@@ -28,5 +28,4 @@ AM_CFLAGS = -I $(top_srcdir)/src/guile_pizzac/ -I $(top_srcdir)/lib \
 bin_PROGRAMS = guilepizzac
 guilepizzac_SOURCES = guile_pizzac.c 
 guilepizzac_CFLAGS = @GUILE_CFLAGS@ -I $(top_srcdir)/lib
-guilepizzac_LDFLAGS = -fuse-ld=gold
 guilepizzac_LDADD = @GUILE_LIBS@ $(top_builddir)/lib/libpizza.a
