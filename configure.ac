@@ -27,6 +27,7 @@ AC_CONFIG_HEADERS([config.h])
 
 
 # Checks for programs.
+AC_LANG([C])
 AC_PROG_CC_C99
 AC_PROG_CC
 AC_PROG_RANLIB
@@ -50,7 +51,7 @@ PKG_CHECK_MODULES([GUILE], [guile-3.0])
 
 # Check for GTK4
 PKG_CHECK_MODULES([GTK], [
-    glib-2.0
+    glib-2.0 >= 2.66.0
     gtk4
 ])
 
