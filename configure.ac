@@ -22,14 +22,14 @@
 AC_PREREQ([2.69])
 AC_INIT([pizzac], [1.0], [ivanguerreschi86@gmail.com])
 AM_INIT_AUTOMAKE([foreign])
-AC_CONFIG_SRCDIR([config.h.in])
+AC_CONFIG_SRCDIR([src/terminal_pizzac/terminal_pizzac.c])
 AC_CONFIG_HEADERS([config.h])
-
+AM_SILENT_RULES([yes])
 
 # Checks for programs.
 AC_LANG([C])
 AC_PROG_CC
-AC_PROG_CC_C99
+AC_PROG_CC_STDC
 AC_PROG_RANLIB
 
 # Checks for header files.
@@ -44,7 +44,9 @@ AC_FUNC_REALLOC
 AC_CHECK_FUNCS([strcspn])
 
 # Check -fanalyze flag
-AX_CHECK_COMPILE_FLAG(-fanalyzer, [AX_APPEND_FLAG([-fanalyzer])])
+AX_CHECK_COMPILE_FLAG(-fanalyzer,
+	[AX_APPEND_FLAG([-fanalyzer])]
+	[echo "C compiler doesn't support Static Analyzer Options (-fanalyzer)"])
 
 # Check for Guile
 PKG_CHECK_MODULES([GUILE], [guile-3.0])
