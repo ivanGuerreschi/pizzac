@@ -50,7 +50,6 @@ m4/lt~obsolete.m4
 # (which is called by configure script))
 Makefile
 
-
 src/terminal_pizzac/terminal_pizzac.o
 src/terminal_pizzac/menu.o
 src/terminal_pizzac/menu_wrapper.o
@@ -71,6 +70,8 @@ src/gtk_pizzac/gtkpizzac
 src/gtk_pizzac/gtk_pizzac.o
 src/gtk_pizzac/interface_pizza.o
 src/gtk_pizzac/.deps/*
+
+tests/.deps/*
 
 build
 

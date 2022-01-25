@@ -61,5 +61,6 @@ AC_CONFIG_FILES([Makefile
 		 lib/Makefile
  		 src/terminal_pizzac/Makefile
 		 src/guile_pizzac/Makefile
-		 src/gtk_pizzac/Makefile])
+		 src/gtk_pizzac/Makefile
+		 tests/Makefile])
 AC_OUTPUT
