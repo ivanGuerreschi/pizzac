@@ -57,7 +57,7 @@ count_row_file (FILE *file)
 pizza_t
 *all_pizzas (FILE *file, int row)
 {
-  pizza_t *pizza = calloc (row + 1, sizeof (pizza_t));
+  pizza_t *pizza = (pizza_t *) calloc (row + 1, sizeof (pizza_t));
 
   if (!pizza)
     {
@@ -67,9 +67,9 @@ pizza_t
 
   for (int i = 0; i < row; i++)
     {
-      pizza[i].ingrediants.flour_type = calloc (50, sizeof (char));
-      pizza[i].ingrediants.yeast_type = calloc (50, sizeof (char));
-      pizza[i].preparation.condiment = calloc (250, sizeof (char));
+      pizza[i].ingrediants.flour_type = (char *) calloc (50, sizeof (char));
+      pizza[i].ingrediants.yeast_type = (char *) calloc (50, sizeof (char));
+      pizza[i].preparation.condiment = (char *) calloc (250, sizeof (char));
     }
 
   int n = 0;
@@ -135,7 +135,7 @@ pizza_t
 void create_pizza (FILE *file, pizza_t pizza)
 {
   char buffer[BUFSIZ];
-  char *new_pizza = calloc (1, 1);
+  char *new_pizza = (char *) calloc (1, 1);
 
   if (!new_pizza)
     {

@@ -59,6 +59,7 @@ print_all_pizza (const char *file_name)
     }
 
   free (pizza);
+  pizza = NULL;
   close_file (&file_pizza);
   close_file (&file_row);
 }
@@ -70,7 +71,7 @@ input_create_pizza (const char *file_name)
   char buffer[BUFSIZ];
 
   puts ("Flour type");
-  char *flour_type = calloc (50, sizeof (char));
+  char *flour_type = (char *) calloc (50, sizeof (char));
 
   if (flour_type)
     {
@@ -79,7 +80,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (flour_type, buffer);
-          pizza.ingrediants.flour_type = calloc (strlen (flour_type) + 1, sizeof (char));
+          pizza.ingrediants.flour_type = (char *) calloc (strlen (flour_type) + 1, sizeof (char));
 
           if (pizza.ingrediants.flour_type)
             {
@@ -101,7 +102,7 @@ input_create_pizza (const char *file_name)
     }
 
   puts ("Yeast type");
-  char *yeast_type = calloc (50, sizeof (char));
+  char *yeast_type = (char *) calloc (50, sizeof (char));
 
   if (yeast_type)
     {
@@ -110,7 +111,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (yeast_type, buffer);
-          pizza.ingrediants.yeast_type = calloc (strlen (yeast_type) + 1, sizeof (char));
+          pizza.ingrediants.yeast_type = (char *) calloc (strlen (yeast_type) + 1, sizeof (char));
 
           if (pizza.ingrediants.yeast_type)
             {
@@ -191,7 +192,7 @@ input_create_pizza (const char *file_name)
     }
 
   puts ("Condiment");
-  char *condiment = calloc (250, sizeof (char));
+  char *condiment = (char *) calloc (250, sizeof (char));
 
   if (condiment)
     {
@@ -200,7 +201,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (condiment, buffer);
-          pizza.preparation.condiment = calloc (strlen (condiment) + 1, sizeof (char));
+          pizza.preparation.condiment =(char *) calloc (strlen (condiment) + 1, sizeof (char));
 
           if (pizza.preparation.condiment)
             {
@@ -217,6 +218,9 @@ input_create_pizza (const char *file_name)
   close_file (&file_pizza);
 
   free (pizza.ingrediants.flour_type);
+  pizza.ingrediants.flour_type = NULL;
   free (pizza.ingrediants.yeast_type);
+  pizza.ingrediants.yeast_type = NULL;
   free (pizza.preparation.condiment);
+  pizza.preparation.condiment = NULL;
 }

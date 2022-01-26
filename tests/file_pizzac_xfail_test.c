@@ -24,7 +24,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 int
 main (void)
-{  
+{
   const char *file = file_name ();
 
   if (strcmp (file, ".pizza.txt") == 0)
@@ -35,4 +35,4 @@ main (void)
     {
       return 1;
     }
-} 
+}

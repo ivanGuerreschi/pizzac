@@ -10,7 +10,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#  
+#
 # pizzac is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -25,4 +25,4 @@ SUBDIRS = lib \
           src/gtk_pizzac \
           tests/
 
-dist_doc_DATA = README.md
+dist_doc_DATA = README.md LICENSE

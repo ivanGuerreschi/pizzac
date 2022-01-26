@@ -39,7 +39,7 @@ on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data)
   int row = count_row_file (file_row);
   pizza_t *pizza = all_pizzas (file_pizza, row);
 
-  gchar *text_view_pizzas = g_malloc (row * (250 * sizeof (gchar)));
+  gchar *text_view_pizzas = (gchar *) g_malloc (row * (250 * sizeof (gchar)));
   int pos = 0;
 
   for (int i = 0; i < row; i++)
@@ -72,7 +72,9 @@ on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data)
     }
 
   free (pizza);
+  pizza = NULL;
   g_free (text_view_pizzas);
+  text_view_pizzas = NULL;
   close_file (&file_pizza);
   close_file (&file_row);
 }
@@ -99,7 +101,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_flour_type));
   flour_type = gtk_entry_buffer_get_text (buffer);
-  pizza.ingrediants.flour_type = calloc (strlen (flour_type) + 1, sizeof (char));
+  pizza.ingrediants.flour_type = (gchar *) calloc (strlen (flour_type) + 1, sizeof (char));
   g_stpcpy (pizza.ingrediants.flour_type, flour_type);
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_grams_flour));
@@ -108,7 +110,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_yeast_type));
   yeast_type = gtk_entry_buffer_get_text (buffer);
-  pizza.ingrediants.yeast_type = calloc (strlen (yeast_type) + 1, sizeof (char));
+  pizza.ingrediants.yeast_type = (gchar *)calloc (strlen (yeast_type) + 1, sizeof (char));
   g_stpcpy (pizza.ingrediants.yeast_type, yeast_type);
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_grams_yeast));
@@ -141,7 +143,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_condiment));
   condiment = gtk_entry_buffer_get_text (buffer);
-  pizza.preparation.condiment = calloc (strlen (condiment) + 1, sizeof (char));
+  pizza.preparation.condiment = (gchar *) calloc (strlen (condiment) + 1, sizeof (char));
   g_stpcpy (pizza.preparation.condiment, condiment);
 
   FILE *file_pizza;
@@ -149,7 +151,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
   create_pizza (file_pizza, pizza);
   close_file (&file_pizza);
 
-  free (pizza.ingrediants.flour_type);
-  free (pizza.ingrediants.yeast_type);
-  free (pizza.preparation.condiment);
+  g_free (pizza.ingrediants.flour_type);
+  g_free (pizza.ingrediants.yeast_type);
+  g_free (pizza.preparation.condiment);
 }
