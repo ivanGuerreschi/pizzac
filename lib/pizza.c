@@ -67,9 +67,9 @@ pizza_t
 
   for (int i = 0; i < row; i++)
     {
-      pizza[i].ingrediants.flour_type = (char *) calloc (50, sizeof (char));
-      pizza[i].ingrediants.yeast_type = (char *) calloc (50, sizeof (char));
-      pizza[i].preparation.condiment = (char *) calloc (250, sizeof (char));
+      pizza[i].ingrediants.flour_type = (char *) malloc (50 * sizeof (char));
+      pizza[i].ingrediants.yeast_type = (char *) malloc (50 * sizeof (char));
+      pizza[i].preparation.condiment = (char *) malloc (250 * sizeof (char));
     }
 
   int n = 0;
@@ -79,51 +79,50 @@ pizza_t
     {
       res = fscanf (file, "%s", pizza[n].ingrediants.flour_type);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_flour);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%s", pizza[n].ingrediants.yeast_type);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_yeast);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_water);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_salt);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_sugar);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_oil);
       if (res != 1)
-        break;
-
+	break;
 
       res = fscanf (file, "%d", &pizza[n].preparation.cooking_time);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%d", &pizza[n].preparation.oven_temperature);
       if (res != 1)
-        break;
+	break;
 
       res = fscanf (file, "%s", pizza[n].preparation.condiment);
       if (res != 1)
-        {
-          perror ("Error read file");
-          exit (1);
-        }
+	{
+	  perror ("Error read file");
+	  exit (1);
+	}
 
       n++;
     }

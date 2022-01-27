@@ -71,7 +71,7 @@ input_create_pizza (const char *file_name)
   char buffer[BUFSIZ];
 
   puts ("Flour type");
-  char *flour_type = (char *) calloc (50, sizeof (char));
+  char *flour_type = (char *) malloc (50 * sizeof (char));
 
   if (flour_type)
     {
@@ -80,7 +80,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (flour_type, buffer);
-          pizza.ingrediants.flour_type = (char *) calloc (strlen (flour_type) + 1, sizeof (char));
+          pizza.ingrediants.flour_type = (char *) malloc ((strlen (flour_type) + 1)* sizeof (char));
 
           if (pizza.ingrediants.flour_type)
             {
@@ -102,7 +102,7 @@ input_create_pizza (const char *file_name)
     }
 
   puts ("Yeast type");
-  char *yeast_type = (char *) calloc (50, sizeof (char));
+  char *yeast_type = (char *) malloc (50 * sizeof (char));
 
   if (yeast_type)
     {
@@ -111,7 +111,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (yeast_type, buffer);
-          pizza.ingrediants.yeast_type = (char *) calloc (strlen (yeast_type) + 1, sizeof (char));
+          pizza.ingrediants.yeast_type = (char *) malloc ((strlen (yeast_type) + 1) * sizeof (char));
 
           if (pizza.ingrediants.yeast_type)
             {
@@ -192,7 +192,7 @@ input_create_pizza (const char *file_name)
     }
 
   puts ("Condiment");
-  char *condiment = (char *) calloc (250, sizeof (char));
+  char *condiment = (char *) malloc (250 * sizeof (char));
 
   if (condiment)
     {
@@ -201,7 +201,7 @@ input_create_pizza (const char *file_name)
         {
           buffer[strcspn (buffer, "\r\n")] = 0;
           strcpy (condiment, buffer);
-          pizza.preparation.condiment =(char *) calloc (strlen (condiment) + 1, sizeof (char));
+          pizza.preparation.condiment = (char *) malloc ((strlen (condiment) + 1) * sizeof (char));
 
           if (pizza.preparation.condiment)
             {

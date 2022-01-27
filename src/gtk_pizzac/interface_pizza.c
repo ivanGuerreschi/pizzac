@@ -101,7 +101,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_flour_type));
   flour_type = gtk_entry_buffer_get_text (buffer);
-  pizza.ingrediants.flour_type = (gchar *) calloc (strlen (flour_type) + 1, sizeof (char));
+  pizza.ingrediants.flour_type = (gchar *) malloc ((strlen (flour_type) + 1) * sizeof (char));
   g_stpcpy (pizza.ingrediants.flour_type, flour_type);
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_grams_flour));
@@ -110,7 +110,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_yeast_type));
   yeast_type = gtk_entry_buffer_get_text (buffer);
-  pizza.ingrediants.yeast_type = (gchar *)calloc (strlen (yeast_type) + 1, sizeof (char));
+  pizza.ingrediants.yeast_type = (gchar *) malloc ((strlen (yeast_type) + 1) * sizeof (char));
   g_stpcpy (pizza.ingrediants.yeast_type, yeast_type);
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_grams_yeast));
@@ -143,7 +143,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_condiment));
   condiment = gtk_entry_buffer_get_text (buffer);
-  pizza.preparation.condiment = (gchar *) calloc (strlen (condiment) + 1, sizeof (char));
+  pizza.preparation.condiment = (gchar *) malloc ((strlen (condiment) + 1) * sizeof (char));
   g_stpcpy (pizza.preparation.condiment, condiment);
 
   FILE *file_pizza;
