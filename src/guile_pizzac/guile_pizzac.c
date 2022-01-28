@@ -26,7 +26,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "pizza.h"
 #include "utility.h"
 
-char *file;
+const char *file;
 
 static SCM version ();
 static SCM license ();

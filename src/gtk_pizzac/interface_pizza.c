@@ -25,13 +25,13 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "include/interface_pizza.h"
 #include "include/entry_widgets.h"
 
+const char *file;
+
 void
 on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data)
 {
   GtkTextBuffer *buffer;
   FILE *file_pizza, *file_row;
-
-  char *file = file_name ();
 
   open_file (&file_pizza, file);
   open_file (&file_row, file);
@@ -97,8 +97,6 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
   const gchar *oven_temperature;
   const gchar *condiment;
 
-  char *file = file_name ();
-
   buffer = gtk_entry_get_buffer (GTK_ENTRY (entrys->entry_flour_type));
   flour_type = gtk_entry_buffer_get_text (buffer);
   pizza.ingrediants.flour_type = (gchar *) malloc ((strlen (flour_type) + 1) * sizeof (char));
@@ -154,4 +152,10 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
   g_free (pizza.ingrediants.flour_type);
   g_free (pizza.ingrediants.yeast_type);
   g_free (pizza.preparation.condiment);
+}
+
+void
+foo (void)
+{
+  file = file_name ();
 }

@@ -26,7 +26,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <pwd.h>
 #include "utility.h"
 
-char
+const char
 *file_name (void)
 {
   char *file;

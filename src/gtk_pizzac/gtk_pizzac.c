@@ -136,6 +136,8 @@ activate (GtkApplication *app, gpointer user_data)
 int
 main (int argc, char **argv)
 {
+  foo ();
+
   GtkApplication *app;
   int status;
 

@@ -22,6 +22,6 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef UTILITY_H
 #define UTILITY_H
 
-char *file_name (void);
+const char *file_name (void);
 
 #endif /* UTILITY_H */
