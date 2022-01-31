@@ -40,7 +40,9 @@ on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data)
   pizza_t *pizza = all_pizzas (file_pizza, row);
 
   gchar *text_view_pizzas = (gchar *) g_malloc (row * (250 * sizeof (gchar)));
-  int pos = 0;
+  int pos = 52;
+
+  g_snprintf (&text_view_pizzas[0], 250, "Flour-Yeast-Water-Salt-Sugar-Oil-Time-Tmp-Condiment\n");
 
   for (int i = 0; i < row; i++)
     pos += g_snprintf (&text_view_pizzas[pos], 250, "%s    %dgr    %s    %dgr    %dgr    %dgr    "
