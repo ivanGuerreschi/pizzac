@@ -130,7 +130,6 @@ pizza_t
   return pizza;
 }
 
-
 void create_pizza (FILE *file, pizza_t pizza)
 {
   char buffer[BUFSIZ];
