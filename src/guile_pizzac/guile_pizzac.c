@@ -31,6 +31,7 @@ const char *file;
 static SCM version ();
 static SCM license ();
 static SCM allpizzas ();
+static SCM removefile ();
 
 static void
 inner_main (void *closure, int argc, char **argv)
@@ -38,6 +39,7 @@ inner_main (void *closure, int argc, char **argv)
   scm_c_define_gsubr ("version", 0, 0, 0, version);
   scm_c_define_gsubr ("license", 0, 0, 0, license);
   scm_c_define_gsubr ("allpizzas", 0, 0, 0, allpizzas);
+  scm_c_define_gsubr ("removefile", 0, 0, 0, removefile);
 
   scm_shell (argc, argv);
 }
@@ -129,5 +131,19 @@ allpizzas (void)
   close_file (&file_row);
 
   SCM result = scm_from_utf8_string (pizzas);
+  return result;
+}
+
+static SCM
+removefile ()
+{
+  const char *value;
+  
+  if (remove_file (file) == 0)
+    value = "Deleted file\n";
+  else
+    value = "Error deleted file\n";
+  
+  SCM result = scm_from_utf8_string (value);
   return result;
 }
