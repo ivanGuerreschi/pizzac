@@ -26,16 +26,16 @@ int
 main (void)
 {
   const char *file = file_name ();
-  
+
   FILE *file_pizza, *file_row;
   open_file (&file_pizza, file);
   open_file (&file_row, file);
-  
+
   int row = count_row_file (file_row);
   pizza_t *pizza = NULL;
   pizza = all_pizzas (file_pizza, row);
 
-  if (pizza != NULL)  
+  if (pizza != NULL)
     return 0;
   else
     return 1;

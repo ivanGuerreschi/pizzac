@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -38,4 +39,13 @@ const char
   strcat (file, file_pizza);
 
   return file;
+}
+
+int
+remove_file (const char *file)
+{  
+  if (remove (file) == 0)
+    return 0;
+  else
+    return -1;
 }

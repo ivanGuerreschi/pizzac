@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pizzac. If not, see <http://www.gnu.org/licenses/>.
 
-TESTS = file_pizzac_test file_pizzac_xfail_test all_pizzas_test new_pizza_test
+TESTS = file_pizzac_test file_pizzac_xfail_test all_pizzas_test new_pizza_test remove_file_test
 XFAIL_TESTS = file_pizzac_xfail_test
 check_PROGRAMS = $(TESTS)
 
@@ -34,6 +34,10 @@ all_pizzas_test_LDADD = $(top_builddir)/lib/libpizza.a
 new_pizza_test_SOURCES = new_pizza_test.c 
 new_pizza_test_CFLAGS = -I $(top_srcdir)/lib
 new_pizza_test_LDADD = $(top_builddir)/lib/libpizza.a
+
+remove_file_test_SOURCES = remove_file_test.c 
+remove_file_test_CFLAGS = -I $(top_srcdir)/lib
+remove_file_test_LDADD = $(top_builddir)/lib/libpizza.a
 
 file_pizzac_xfail_test_SOURCES = file_pizzac_xfail_test.c 
 file_pizzac_xfail_test_CFLAGS = -I $(top_srcdir)/lib

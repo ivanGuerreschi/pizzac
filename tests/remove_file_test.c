@@ -1,4 +1,4 @@
-/* uutility.h
+/* remove_file_test.c
    Copyright (C) 2021-2022 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,10 +19,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef UTILITY_H
-#define UTILITY_H
+#include "utility.h"
 
-const char *file_name (void);
-int remove_file (const char *);
-
-#endif /* UTILITY_H */
+int
+main (void)
+{
+  const char *file = file_name ();
+  
+  if (remove_file (file) == 0)
+    return 0;
+  else
+    return 1;
+}
