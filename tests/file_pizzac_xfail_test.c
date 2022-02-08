@@ -25,7 +25,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 int
 main (void)
 {
-  const char *file = file_name ();
+  const char *file = file_name (NAMEFILE);
+
+  puts (NAMEFILE);
 
   if (strcmp (file, ".pizza.txt") == 0)
     {

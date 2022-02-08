@@ -29,7 +29,7 @@ main (void)
 {
   int value = 0;
 
-  const char *file = file_name ();
+  const char *file = file_name (NAMEFILE);
 
   FILE *file_pizza, *file_row;
   open_file (&file_pizza, file);

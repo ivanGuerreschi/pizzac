@@ -28,6 +28,6 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 void on_btn_all_pizzas_clicked (GtkWidget *button, gpointer data);
 void on_btn_create_pizza_clicked (GtkWidget    *button,
                                   EntryWidgets *entrys);
-void foo (void);
+void file_pizza (void);
 
 #endif /* INTERFACE_PIZZA_H  */

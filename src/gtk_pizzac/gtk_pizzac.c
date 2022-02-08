@@ -20,6 +20,7 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <gtk/gtk.h>
+#include "utility.h"
 #include "include/interface_pizza.h"
 #include "include/entry_widgets.h"
 
@@ -136,7 +137,7 @@ activate (GtkApplication *app, gpointer user_data)
 int
 main (int argc, char **argv)
 {
-  foo ();
+  file_pizza ();
 
   GtkApplication *app;
   int status;

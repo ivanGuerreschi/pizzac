@@ -24,7 +24,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 int
 main (void)
 {
-  const char *file = file_name ();
+  const char *file = file_name (NAMEFILE);
   
   if (remove_file (file) == 0)
     return 0;

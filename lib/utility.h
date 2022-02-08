@@ -22,7 +22,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef UTILITY_H
 #define UTILITY_H
 
-const char *file_name (void);
+#define NAMEFILE "/.pizza.txt"
+
+const char *file_name (const char *);
 int remove_file (const char *);
 
 #endif /* UTILITY_H */

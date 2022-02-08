@@ -28,10 +28,9 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include "utility.h"
 
 const char
-*file_name (void)
+*file_name (const char *file_pizza)
 {
   char *file;
-  const char *file_pizza = "/.pizza.txt";
   
   if ((file = getenv ("HOME")) == NULL)
     file = getpwuid (getuid())->pw_dir;

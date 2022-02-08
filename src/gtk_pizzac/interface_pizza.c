@@ -157,7 +157,7 @@ on_btn_create_pizza_clicked (GtkWidget    *button,
 }
 
 void
-foo (void)
+file_pizza (void)
 {
-  file = file_name ();
+  file = file_name (NAMEFILE);
 }

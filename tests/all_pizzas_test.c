@@ -25,7 +25,7 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 int
 main (void)
 {
-  const char *file = file_name ();
+  const char *file = file_name (NAMEFILE);
 
   FILE *file_pizza, *file_row;
   open_file (&file_pizza, file);

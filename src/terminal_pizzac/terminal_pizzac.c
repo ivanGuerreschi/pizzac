@@ -35,7 +35,7 @@ main (void)
   puts (print_version ());
   puts (print_license ());
 
-  const char *file = file_name ();
+  const char *file = file_name (NAMEFILE);
   int menu = 0;
 
   while (true)

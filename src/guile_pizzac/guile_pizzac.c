@@ -47,7 +47,7 @@ inner_main (void *closure, int argc, char **argv)
 int
 main (int argc, char **argv)
 {
-  file = file_name ();
+  file = file_name (NAMEFILE);
   
   scm_boot_guile (argc, argv, inner_main, 0);
   return 0;
