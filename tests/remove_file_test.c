@@ -20,12 +20,13 @@ You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "utility.h"
+#include "include/utility_test.h"
 
 int
 main (void)
 {
-  const char *file = file_name (NAMEFILE);
-  
+  const char *file = file_name (NAMEFILETEST);
+
   if (remove_file (file) == 0)
     return 0;
   else

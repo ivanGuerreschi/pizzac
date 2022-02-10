@@ -21,13 +21,14 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string.h>
 #include "utility.h"
+#include "include/utility_test.h"
 
 int
 main (void)
 {
-  const char *file = file_name (NAMEFILE);
+  const char *file = file_name (NAMEFILETEST);
 
-  if (strcmp (file, "/home/ivan/.pizza.txt") == 0)
+  if (strcmp (file, "/home/ivan/.pizzatest.txt") == 0)
     {
       return 0;
     }

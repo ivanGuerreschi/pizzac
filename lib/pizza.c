@@ -79,50 +79,50 @@ pizza_t
     {
       res = fscanf (file, "%s", pizza[n].ingrediants.flour_type);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_flour);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%s", pizza[n].ingrediants.yeast_type);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_yeast);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_water);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_salt);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_sugar);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].ingrediants.grams_oil);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].preparation.cooking_time);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%d", &pizza[n].preparation.oven_temperature);
       if (res != 1)
-	break;
+        break;
 
       res = fscanf (file, "%s", pizza[n].preparation.condiment);
       if (res != 1)
-	{
-	  perror ("Error read file");
-	  exit (1);
-	}
+        {
+          perror ("Error read file");
+          exit (1);
+        }
 
       n++;
     }

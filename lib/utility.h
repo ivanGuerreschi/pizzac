@@ -1,4 +1,4 @@
-/* uutility.h
+/* utility.h
    Copyright (C) 2021-2022 Ivan Guerreschi
 
 This file is part of pizzac.

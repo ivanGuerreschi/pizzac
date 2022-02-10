@@ -23,13 +23,14 @@ along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 #include <string.h>
 #include "utility.h"
 #include "pizza.h"
+#include "include/utility_test.h"
 
 int
 main (void)
 {
   int value = 0;
 
-  const char *file = file_name (NAMEFILE);
+  const char *file = file_name (NAMEFILETEST);
 
   FILE *file_pizza, *file_row;
   open_file (&file_pizza, file);

@@ -48,7 +48,7 @@ int
 main (int argc, char **argv)
 {
   file = file_name (NAMEFILE);
-  
+
   scm_boot_guile (argc, argv, inner_main, 0);
   return 0;
 }
@@ -138,12 +138,12 @@ static SCM
 removefile ()
 {
   const char *value;
-  
+
   if (remove_file (file) == 0)
     value = "Deleted file\n";
   else
     value = "Error deleted file\n";
-  
+
   SCM result = scm_from_utf8_string (value);
   return result;
 }

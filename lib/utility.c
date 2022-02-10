@@ -31,10 +31,10 @@ const char
 *file_name (const char *file_pizza)
 {
   char *file;
-  
+
   if ((file = getenv ("HOME")) == NULL)
     file = getpwuid (getuid())->pw_dir;
-  
+
   strcat (file, file_pizza);
 
   return file;
@@ -42,7 +42,7 @@ const char
 
 int
 remove_file (const char *file)
-{  
+{
   if (remove (file) == 0)
     return 0;
   else

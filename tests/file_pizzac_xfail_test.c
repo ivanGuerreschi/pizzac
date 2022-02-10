@@ -19,15 +19,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <stdio.h>
 #include <string.h>
 #include "utility.h"
+#include "include/utility_test.h"
 
 int
 main (void)
 {
-  const char *file = file_name (NAMEFILE);
-
-  puts (NAMEFILE);
+  const char *file = file_name (NAMEFILETEST);
 
   if (strcmp (file, ".pizza.txt") == 0)
     {

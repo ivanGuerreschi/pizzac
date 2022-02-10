@@ -1,4 +1,4 @@
-/* all_pizzas_test.c
+/* utility_test.h
    Copyright (C) 2021-2022 Ivan Guerreschi
 
 This file is part of pizzac.
@@ -19,25 +19,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pizzac. If not, see <http://www.gnu.org/licenses/>. */
 
-#include "pizza.h"
-#include "utility.h"
-#include "include/utility_test.h"
+#ifndef UTILITY_TEST_H
+#define UTILITY_TEST_H
 
-int
-main (void)
-{
-  const char *file = file_name (NAMEFILETEST);
+#define NAMEFILETEST "/.pizzatest.txt"
 
-  FILE *file_pizza, *file_row;
-  open_file (&file_pizza, file);
-  open_file (&file_row, file);
+#endif /* UTILITY_TEST_H */
 
-  int row = count_row_file (file_row);
-  pizza_t *pizza = NULL;
-  pizza = all_pizzas (file_pizza, row);
-
-  if (pizza != NULL)
-    return 0;
-  else
-    return 1;
-}
